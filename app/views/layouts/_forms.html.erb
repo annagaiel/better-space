@@ -1,4 +1,17 @@
 <%= form_for @space_listings, :html => { multipart: true }  do |f| %>
+<% if @space_listings.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@space_listings.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @space_listings.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <p>
   <%= f.label :title, "Listing name" %>
   <%= f.text_field :title %>
