@@ -11,8 +11,11 @@
  * file per style scope.
  *
  *= require bootstrap
+ *= require font-awesome
  *= require style.min
  *= require responsive.min
  *= require_tree .
  *= require_self
  */
+
+@import "font-awesome";
