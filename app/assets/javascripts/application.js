@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
+//= require gmap3.min
+//= require jquery.easing
+//= require jquery.jcarousel.min
+//= require imagesloaded.pkgd.min
+//= require masonry.pkgd.min
+//= require jquery.nicescroll.min
+//= require script
 //= require_tree .
