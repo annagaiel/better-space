@@ -3,6 +3,7 @@ class SpaceListingsController < ApplicationController
 
   def index
     @space_listings = current_user.space_listings
+    render "list_view"
   end
 
   def new

@@ -14,7 +14,7 @@
   <% end %>
 <div class="form-group">
   <%= f.label :title, "Listing name" %>
-  <%= f.text_field :title, :class => "form-group" %>
+  <%= f.text_field :title, :class => "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :description, "Description" %>
@@ -22,9 +22,9 @@
 </div>
 <div class="form-group">
   <%= f.label :day_rent, "Day rent" %>
-  <%= f.text_field :day_rent, :class => "form-group" %>
+  <%= f.text_field :day_rent, :class => "form-control" %>
   <%= f.label :monthly_rent, "Monthly rent" %>
-  <%= f.text_field :monthly_rent, :class => "form-group" %>
+  <%= f.text_field :monthly_rent, :class => "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :space_type, "Space type" %>
@@ -36,11 +36,11 @@
 </div>
 <div class="form-group">
   <%= f.label :size_length, "Length" %>
-  <%= f.text_field :size_length, :class => "form-group" %>
+  <%= f.text_field :size_length, :class => "form-control" %>
   <%= f.label :size_width, "Width" %>
-  <%= f.text_field :size_width, :class => "form-group" %>
+  <%= f.text_field :size_width, :class => "form-control" %>
   <%= f.label :size_height, "Height" %>
-  <%= f.text_field :size_height, :class => "form-group" %>
+  <%= f.text_field :size_height, :class => "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :address, "Street address" %>
@@ -48,15 +48,15 @@
 </div>
 <div class="form-group">
   <%= f.label :city, "City" %>
-  <%= f.text_field :city, :class => "form-group" %>
+  <%= f.text_field :city, :class => "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :state, "State/Province/Region" %>
-  <%= f.text_field :state, :class => "form-group" %>
+  <%= f.text_field :state, :class => "form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :zip_code, "Zip/Postal Code" %>
-  <%= f.text_field :zip_code, :class => "form-group" %>
+  <%= f.text_field :zip_code, :class => "form-control" %>
 </div>
 <p>
   <%= f.submit f.object.new_record? ? "Create" : "Update", :class => "btn btn-success btn-lg" %>
