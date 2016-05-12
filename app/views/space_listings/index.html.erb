@@ -1,7 +1,6 @@
-<h1>SpaceListings#index</h1>
-<p>Find me in app/views/space_listings/index.html.erb</p>
-
-<table border="1">
+<h1>All Listings</h1>
+<div class="table-responsive">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>title</th>
@@ -26,10 +25,9 @@
       <td><%= space_listing.zip_code %></td>
       <td><%= space_listing.city %></td>
       <td><%= space_listing.state %></td>
-      <td><%= space_listing.size_width %>X<%= space_listing.length %>X<%= space_listing.height %></td>
+      <td><%= space_listing.size_width %>X<%= space_listing.size_length %>X<%= space_listing.size_height %></td>
     </tr>
   </tbody>
 <% end %>
 </table>
-
-<%= link_to "New space listing", new_space_listing_path %>
+</div>
