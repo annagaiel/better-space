@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem "font-awesome-rails"
 gem 'kaminari'
+gem 'faker', '~> 1.6'
+gem 'seed_dump', '~> 3.2'
 
 group :development, :test do
   gem 'byebug'
