@@ -4,7 +4,7 @@ class SpaceListingsController < ApplicationController
 
   def index
     page_limit = params[:page] || 1
-    @space_listings = current_user.space_listings.page page_limit
+    @space_listings = current_user.space_listings.page(params[:page]).per(3)
     render "list_view"
   end
 
