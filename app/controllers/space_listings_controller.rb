@@ -1,6 +1,6 @@
 class SpaceListingsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :set_listing, only: [:show, :edit, :update]
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
     page_limit = params[:page] || 1
@@ -34,6 +34,11 @@ class SpaceListingsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @space_listing.destroy
+    redirect_to '/'
   end
 
   private
