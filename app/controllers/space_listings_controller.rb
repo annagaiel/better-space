@@ -2,7 +2,8 @@ class SpaceListingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @space_listings = current_user.space_listings
+    page_limit = params[:page] || 1
+    @space_listings = current_user.space_listings.page page_limit
     render "list_view"
   end
 

@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem "font-awesome-rails"
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'
@@ -31,3 +32,5 @@ group :test do
 end
 
 gem 'rails_12factor', group: :production
+
+ruby '2.3.0'
