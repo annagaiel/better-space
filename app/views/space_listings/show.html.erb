@@ -13,6 +13,7 @@
             <div class="row">
               <div class="col-md-12">
                 <h2><%= @space_listing.title %></h2>
+                <%= link_to "Edit", edit_space_listing_path %>
                 <div id="slider-property" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#slider-property" data-slide-to="0" class="">
@@ -70,7 +71,6 @@
                     <td><strong>L</strong> <%= @space_listing.size_length %>ft x  <strong>W</strong> <%= @space_listing.size_width %>ft x <strong>H</strong> <%= @space_listing.size_length %>ft</td>
                   </tr>
                 </table>
-
                 <h3>Property Description</h3>
                 <p><%= @space_listing.description %></p>
                   </div>
@@ -142,4 +142,6 @@
             </div>
           </div>
           <!-- end:article -->
+
+
 </div>

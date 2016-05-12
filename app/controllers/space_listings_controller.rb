@@ -6,7 +6,7 @@ class SpaceListingsController < ApplicationController
   end
 
   def new
-    @space_listings = SpaceListing.new
+    @space_listing = SpaceListing.new
   end
 
   def create
@@ -15,11 +15,15 @@ class SpaceListingsController < ApplicationController
     if @space_listing.save
       redirect_to @space_listing
     else
-      render "new"
+      render :new
     end
   end
 
   def show
+    @space_listing = SpaceListing.find(params[:id])
+  end
+
+  def edit
     @space_listing = SpaceListing.find(params[:id])
   end
 
