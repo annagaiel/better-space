@@ -12,51 +12,53 @@
       </ul>
     </div>
   <% end %>
-<p>
+<div class="form-group">
   <%= f.label :title, "Listing name" %>
-  <%= f.text_field :title %>
-</p>
-<p>
+  <%= f.text_field :title, :class => "form-group" %>
+</div>
+<div class="form-group">
   <%= f.label :description, "Description" %>
-  <%= f.text_area :description %>
-</p>
-<p>
+  <%= f.text_area :description, :class => "form-control input-lg", row:"7" %>
+</div>
+<div class="form-group">
   <%= f.label :day_rent, "Day rent" %>
-  <%= f.text_field :day_rent %>
+  <%= f.text_field :day_rent, :class => "form-group" %>
   <%= f.label :monthly_rent, "Monthly rent" %>
-  <%= f.text_field :monthly_rent %>
-</p>
-<p>
+  <%= f.text_field :monthly_rent, :class => "form-group" %>
+</div>
+<div class="form-group">
   <%= f.label :space_type, "Space type" %>
-  <%= f.select :space_type, [["Garage","Garage"], ["House","House"]], id: "space_type", prompt: "Select space", class: "form-control" %>
+  <%= f.select :space_type, [["Garage","Garage"], ["House","House"]], {include_blank: "Select Type"}, { :class => 'form-control' } %>
+</div>
+<div class="form-group">
   <%= f.label :environment_type, "Environment type" %>
-  <%= f.select :environment_type, [["Indoor","Indoor"], ["Outdoor","Outdoor"]], id: "environment_type", prompt: "Select environment", class: "form-control" %>
-</p>
-<p>
+  <%= f.select :environment_type, [["Indoor","Indoor"], ["Outdoor","Outdoor"]], {include_blank: "Select Environment"}, { :class => 'form-control' } %>
+</div>
+<div class="form-group">
   <%= f.label :size_length, "Length" %>
-  <%= f.text_field :size_length %>
+  <%= f.text_field :size_length, :class => "form-group" %>
   <%= f.label :size_width, "Width" %>
-  <%= f.text_field :size_width %>
+  <%= f.text_field :size_width, :class => "form-group" %>
   <%= f.label :size_height, "Height" %>
-  <%= f.text_field :size_height %>
-</p>
-<p>
+  <%= f.text_field :size_height, :class => "form-group" %>
+</div>
+<div class="form-group">
   <%= f.label :address, "Street address" %>
-  <%= f.text_area :address %>
-</p>
-<p>
+  <%= f.text_area :address, :class => "form-control input-lg", row:"5" %>
+</div>
+<div class="form-group">
   <%= f.label :city, "City" %>
-  <%= f.text_field :city %>
-</p>
-<p>
+  <%= f.text_field :city, :class => "form-group" %>
+</div>
+<div class="form-group">
   <%= f.label :state, "State/Province/Region" %>
-  <%= f.text_field :state %>
-</p>
-<p>
+  <%= f.text_field :state, :class => "form-group" %>
+</div>
+<div class="form-group">
   <%= f.label :zip_code, "Zip/Postal Code" %>
-  <%= f.text_field :zip_code %>
-</p>
+  <%= f.text_field :zip_code, :class => "form-group" %>
+</div>
 <p>
-  <%= f.submit f.object.new_record? ? "Create" : "Update" %>
+  <%= f.submit f.object.new_record? ? "Create" : "Update", :class => "btn btn-success btn-lg" %>
 </p>
 <% end %>
