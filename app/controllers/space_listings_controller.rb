@@ -1,5 +1,6 @@
 class SpaceListingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
+  before_action :set_listing, only: [:show, :edit, :update]
 
   def index
     page_limit = params[:page] || 1
@@ -22,11 +23,17 @@ class SpaceListingsController < ApplicationController
   end
 
   def show
-    @space_listing = SpaceListing.find(params[:id])
   end
 
   def edit
-    @space_listing = SpaceListing.find(params[:id])
+  end
+
+  def update
+    if @space_listing.update(space_listing_params)
+      redirect_to @space_listing, notice: "Updated #{@space_listing.title}"
+    else
+      render :edit
+    end
   end
 
   private
@@ -36,5 +43,9 @@ class SpaceListingsController < ApplicationController
       :space_type, :environment_type,
       :address, :city, :state, :zip_code,
       :size_width, :size_height, :size_length)
+    end
+
+    def set_listing
+      @space_listing = SpaceListing.find(params[:id])
     end
 end
