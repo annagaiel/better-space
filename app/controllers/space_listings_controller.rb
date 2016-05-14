@@ -1,10 +1,15 @@
 class SpaceListingsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
     page_limit = params[:page] || 1
-    @space_listings = current_user.space_listings.page(params[:page]).per(3)
+
+    if current_user
+      @space_listings = current_user.space_listings.page(params[:page]).per(3)
+    else
+      @space_listings = SpaceListing.all
+    end
     render "list_view"
   end
 
