@@ -14,6 +14,7 @@ gem "font-awesome-rails"
 gem 'kaminari'
 gem 'faker', '~> 1.6'
 gem 'seed_dump', '~> 3.2'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 group :development, :test do
   gem 'byebug'
