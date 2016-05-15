@@ -15,6 +15,9 @@ gem 'kaminari'
 gem 'faker', '~> 1.6'
 gem 'seed_dump', '~> 3.2'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'fog'
+gem "mini_magick"
+
 
 group :development, :test do
   gem 'byebug'
@@ -23,7 +26,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'quiet_assets'
-  gem 'dotenv-rails'
 end
 
 group :development do
