@@ -22,6 +22,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'dotenv-rails'
 end
 
 group :development do
