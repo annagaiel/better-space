@@ -1,0 +1,25 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="property-container">
+    <div class="property-content-list">
+      <div class="property-image-list">
+        <%= image_tag "img13.jpg", alt:"" %>
+        <div class="property-price">
+          <h4><%= space_listing.title %></h4>
+          <span><%= number_to_currency space_listing.monthly_rent %><small>/month</small></span>
+        </div>
+        <div class="property-status">
+          <span>For Rent</span>
+        </div>
+        <div class="property-footer">
+          <a href="#" title="Add to favorite"><i class="fa fa-heart"></i></a>
+          <a href="#" title="Contact Agent"><i class="fa fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="property-text">
+        <h3><%= link_to "#{space_listing.title}", "/space_listings/#{space_listing.id}" %><small><%= space_listing.address %>, <%= space_listing.city %></small></h3>
+        <p><%= space_listing.description %></p>
+        <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+      </div>
+    </div>
+  </div>
+</div>

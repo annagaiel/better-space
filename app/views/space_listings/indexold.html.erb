@@ -1,0 +1,33 @@
+<h1>All Listings</h1>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>description</th>
+      <th>monthly rent</th>
+      <th>day rent</th>
+      <th>address</th>
+      <th>zip code</th>
+      <th>city</th>
+      <th>state</th>
+      <th>unit size</th>
+    </tr>
+  </thead>
+<% @space_listings.each do |space_listing| %>
+  <tbody>
+    <tr>
+      <td><%= space_listing.title %></td>
+      <td><%= space_listing.description %></td>
+      <td><%= space_listing.monthly_rent %></td>
+      <td><%= space_listing.day_rent %></td>
+      <td><%= space_listing.address %></td>
+      <td><%= space_listing.zip_code %></td>
+      <td><%= space_listing.city %></td>
+      <td><%= space_listing.state %></td>
+      <td><%= space_listing.size_width %>X<%= space_listing.size_length %>X<%= space_listing.size_height %></td>
+    </tr>
+  </tbody>
+<% end %>
+</table>
+</div>

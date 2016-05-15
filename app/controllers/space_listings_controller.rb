@@ -3,14 +3,15 @@ class SpaceListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
-    page_limit = params[:page] || 1
-
-    if current_user
-      @space_listings = current_user.space_listings.page(params[:page]).per(3)
-    else
-      @space_listings = SpaceListing.all
-    end
-    render "list_view"
+    # page_limit =  1
+    # page_show_number = params[:show_number] || 2
+    # if current_user
+    #   @space_listings = current_user.space_listings.page(page_limit).per(page_show_number)
+    # else
+    #   @space_listings = SpaceListing.all
+    # end
+    @space_listings = SpaceListing.all
+    render :index
   end
 
   def new
