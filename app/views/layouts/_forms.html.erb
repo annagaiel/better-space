@@ -58,6 +58,18 @@
   <%= f.label :zip_code, "Zip/Postal Code" %>
   <%= f.text_field :zip_code, :class => "form-control" %>
 </div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <span class="btn btn-default btn-file">
+          <i class="fa fa-cloud-upload fa-lg"></i> Upload Photos
+          <%= file_field_tag "images[]", type: :file, multiple: true %>
+      </span>
+    </div>
+  </div>
+</div>
+
 <p>
   <%= f.submit f.object.new_record? ? "Create" : "Update", :class => "btn btn-success btn-lg" %>
 </p>

@@ -21,12 +21,18 @@ class SpaceListingsController < ApplicationController
     @space_listing = SpaceListing.new(space_listing_params)
     @space_listing.user_id = current_user.id
     if @space_listing.save
+      if params[:images]
+        params[:images].each { |image|
+          @space_listing.images.create(image_url: image)
+        }
+      end
+      flash[:notice] = "Your images has been created."
       redirect_to @space_listing
     else
       render :new
     end
   end
-
+  
   def show
   end
 
@@ -52,7 +58,8 @@ class SpaceListingsController < ApplicationController
       :day_rent,:monthly_rent,
       :space_type, :environment_type,
       :address, :city, :state, :zip_code,
-      :size_width, :size_height, :size_length)
+      :size_width, :size_height, :size_length,
+      {images: []})
     end
 
     def set_listing
