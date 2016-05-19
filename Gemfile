@@ -17,6 +17,7 @@ gem 'seed_dump', '~> 3.2'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'fog'
 gem "mini_magick"
+gem "figaro"
 
 
 group :development, :test do
