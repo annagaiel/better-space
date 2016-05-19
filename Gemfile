@@ -18,7 +18,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'fog'
 gem "mini_magick"
 gem "figaro"
-
+gem "geocoder"
 
 group :development, :test do
   gem 'byebug'
