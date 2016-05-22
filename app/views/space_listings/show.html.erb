@@ -1,3 +1,29 @@
+<script>
+function initMap() {
+  var place = {lat: parseFloat(document.getElementById("latitude").innerHTML),
+               lng: parseFloat(document.getElementById("longtitude").innerHTML)};
+  var map = new google.maps.Map(document.getElementById('map-property'), {
+    zoom: 12,
+    center: place
+  });
+
+  var contentString = document.getElementById("description").innerHTML;
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 200
+  });
+
+  var marker = new google.maps.Marker({
+    position: place,
+    map: map,
+    title: document.getElementById("title").innerHTML
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+</script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap">
 </script>
@@ -15,7 +41,7 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&ca
           <div class="tab-pane fade in active" id="detail">
             <div class="row">
               <div class="col-md-12">
-                <h2><%= @space_listing.title %></h2>
+                <h2 id="title"><%= @space_listing.title %></h2>
                 <div id="slider-property" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#slider-property" data-slide-to="0" class="">
@@ -73,8 +99,10 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&ca
                     <td><strong>L</strong> <%= @space_listing.size_length %>ft x  <strong>W</strong> <%= @space_listing.size_width %>ft x <strong>H</strong> <%= @space_listing.size_length %>ft</td>
                   </tr>
                 </table>
+                <input type="hidden" id="latitude" value="<%= @space_listing.latitude %>">
+                <input type="hidden" id="longtitude" value="<%= @space_listing.longitude %>">
                 <h3>Property Description</h3>
-                <p><%= @space_listing.description %></p>
+                <p id="description"><%= @space_listing.description %></p>
 
                 <% @space_listing.images.each do |image| %>
                 <%= image_tag image.image_url %>
@@ -90,7 +118,7 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&ca
           <div class="tab-pane fade" id="location">
             <div class="row">
               <div class="col-md-12">
-                <div id="map-property">sdasdsadsadsad</div>
+                <div id="map-property"></div>
               </div>
             </div>
             <div class="row">
@@ -151,49 +179,4 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&ca
         </div>
       </div>
       <!-- end:article -->
-
-
     </div>
-    <script>
-    function initMap() {
-      var uluru = {lat: -25.363, lng: 131.044};
-      var map = new google.maps.Map(document.getElementById('map-property'), {
-        zoom: 12,
-        center: uluru
-      });
-
-      var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-      '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      'sandstone rock formation in the southern part of the '+
-      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-      'south west of the nearest large town, Alice Springs; 450&#160;km '+
-      '(280&#160;mi) by road. Uluru is '+
-      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-      'Aboriginal people of the area. It has many springs, waterholes, '+
-      'rock caves and ancient paintings. Uluru is listed as a World '+
-      'Heritage Site.</p>'+
-      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-      '(last visited June 22, 2009).</p>'+
-      '</div>'+
-      '</div>';
-
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 200
-      });
-
-      var marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-        title: 'Uluru (Ayers Rock)'
-      });
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-    }
-    </script>
