@@ -32,7 +32,7 @@ class SpaceListingsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
   end
 
@@ -57,8 +57,10 @@ class SpaceListingsController < ApplicationController
       params.require(:space_listing).permit(:title, :description,
       :day_rent,:monthly_rent,
       :space_type, :environment_type,
-      :address, :city, :state, :zip_code,
       :size_width, :size_height, :size_length,
+      :street_number, :route, :city,
+      :state, :zip_code, :country,
+      :latitude, :longitude,
       {images: []})
     end
 

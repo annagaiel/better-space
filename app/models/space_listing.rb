@@ -13,4 +13,8 @@ class SpaceListing < ActiveRecord::Base
   validates :size_width, presence: true
   validates :size_height, presence: true
 
+  def address
+    return "#{street_number} #{route} #{city}, #{state} #{zip_code} #{country}"
+  end
+
 end
