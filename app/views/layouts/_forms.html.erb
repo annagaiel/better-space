@@ -1,3 +1,62 @@
+<script>
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+    {types: ['geocode']});
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    }
+  }
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        document.getElementById("latitude").value = position.coords.latitude;
+        document.getElementById("longitude").value = position.coords.longitude;
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV[" google_api_key"] %>&libraries=places&callback=initAutocomplete"
+  async defer></script>
 <%= form_for @space_listing, :html => { multipart: true }  do |f| %>
 <% if @space_listing.errors.any? %>
     <div id="error_explanation">
@@ -14,50 +73,62 @@
   <% end %>
 <div class="form-group">
   <%= f.label :title, "Listing name" %>
-  <%= f.text_field :title, :class => "form-control" %>
+  <%= f.text_field :title, class:"form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :description, "Description" %>
-  <%= f.text_area :description, :class => "form-control input-lg", row:"7" %>
+  <%= f.text_area :description, class:"form-control input-lg", row:"5" %>
 </div>
 <div class="form-group">
   <%= f.label :day_rent, "Day rent" %>
-  <%= f.text_field :day_rent, :class => "form-control" %>
+  <%= f.text_field :day_rent, class:"form-control" %>
   <%= f.label :monthly_rent, "Monthly rent" %>
-  <%= f.text_field :monthly_rent, :class => "form-control" %>
+  <%= f.text_field :monthly_rent, class:"form-control" %>
 </div>
 <div class="form-group">
   <%= f.label :space_type, "Space type" %>
-  <%= f.select :space_type, [["Garage","Garage"], ["House","House"]], {include_blank: "Select Type"}, { :class => 'form-control' } %>
+  <%= f.select :space_type, [["Garage","Garage"], ["House","House"]], {include_blank: "Select Type"}, { class:'form-control' } %>
 </div>
 <div class="form-group">
   <%= f.label :environment_type, "Environment type" %>
-  <%= f.select :environment_type, [["Indoor","Indoor"], ["Outdoor","Outdoor"]], {include_blank: "Select Environment"}, { :class => 'form-control' } %>
+  <%= f.select :environment_type, [["Indoor","Indoor"], ["Outdoor","Outdoor"]], {include_blank: "Select Environment"}, { class:'form-control' } %>
 </div>
 <div class="form-group">
   <%= f.label :size_length, "Length" %>
-  <%= f.text_field :size_length, :class => "form-control" %>
+  <%= f.text_field :size_length, class:"form-control" %>
   <%= f.label :size_width, "Width" %>
-  <%= f.text_field :size_width, :class => "form-control" %>
+  <%= f.text_field :size_width, class:"form-control" %>
   <%= f.label :size_height, "Height" %>
-  <%= f.text_field :size_height, :class => "form-control" %>
+  <%= f.text_field :size_height, class:"form-control" %>
 </div>
+
+<%= render "layouts/autoform" %>
+
 <div class="form-group">
-  <%= f.label :address, "Street address" %>
-  <%= f.text_area :address, :class => "form-control input-lg", row:"5" %>
+  <%= f.label :street_number, "Street Number" %>
+  <%= f.text_field  :street_number, class:"form-control", id: "street_number", disabled:"true" %>
+  <%= f.label :route, "Route" %>
+  <%= f.text_field :route, class:"form-control", id:"route", disabled:"true" %>
 </div>
 <div class="form-group">
   <%= f.label :city, "City" %>
-  <%= f.text_field :city, :class => "form-control" %>
+  <%= f.text_field :city, class:"form-control", id:"locality", disabled:"true" %>
 </div>
 <div class="form-group">
   <%= f.label :state, "State/Province/Region" %>
-  <%= f.text_field :state, :class => "form-control" %>
+  <%= f.text_field :state, class:"form-control", id:"administrative_area_level_1", disabled:"true" %>
 </div>
 <div class="form-group">
   <%= f.label :zip_code, "Zip/Postal Code" %>
-  <%= f.text_field :zip_code, :class => "form-control" %>
+  <%= f.text_field :zip_code, class:"form-control", id:"postal_code", disabled:"true" %>
 </div>
+<div class="form-group">
+  <%= f.label :country, "Country" %>
+  <%= f.text_field :country, class:"form-control", id:"country", disabled:"true" %>
+</div>
+
+<%= f.hidden_field :latitude, id:"latitude" %>
+<%= f.hidden_field :longitude, id:"longitude" %>
 
 <div class="row">
   <div class="col-md-4">
@@ -71,6 +142,6 @@
 </div>
 
 <p>
-  <%= f.submit f.object.new_record? ? "Create" : "Update", :class => "btn btn-success btn-lg" %>
+  <%= f.submit f.object.new_record? ? "Create" : "Update", class:"btn btn-success btn-lg" %>
 </p>
 <% end %>
