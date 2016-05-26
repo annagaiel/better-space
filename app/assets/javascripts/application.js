@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require gmap3.min
 //= require jquery.easing
 //= require jquery.jcarousel.min
 //= require imagesloaded.pkgd.min
