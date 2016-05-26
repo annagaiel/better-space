@@ -43,7 +43,6 @@
                   </a>
                 </div>
                 <h3>Listing Overview</h3>
-                <div id="map-canvas"></div>
                 <table class="table table-bordered">
                   <tr>
                     <td><strong>Address</strong></td>
@@ -89,7 +88,7 @@
           <div class="tab-pane fade" id="location">
             <div class="row">
               <div class="col-md-12">
-                <div id="map-canvas"></div>
+                <div id="map-canvas2"></div>
               </div>
             </div>
             <div class="row">
@@ -157,7 +156,7 @@
             lat: <%= @space_listing.latitude %>,
             lng: <%= @space_listing.longitude %>};
 
-            var map = new google.maps.Map(document.getElementById('map-canvas'), {
+            var map = new google.maps.Map(document.getElementById('map-canvas2'), {
               zoom: 12,
               center: place
             });
