@@ -1,6 +1,18 @@
 <div class="topbar">
   <div class="container">
     <div class="row">
+      <% if notice.present? %>
+        <div class="alert alert-info">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <p><%= notice %></p>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <p><%= alert %></p>
+        </div>
+      <% end %>
       <div class="col-md-12">
         <ul class="topbar-nav topbar-left">
           <li class="disabled"><a href="#"><i class="fa fa-envelope"></i> info@betterspace.com</a></li>

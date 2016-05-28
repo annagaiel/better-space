@@ -26,22 +26,33 @@ class SpaceListingsController < ApplicationController
           @space_listing.images.create(image_url: image)
         }
       end
-      flash[:notice] = "Your images has been created."
-      redirect_to @space_listing
+      @images = @space_listing.images
+      redirect_to edit_space_listing_path(@space_listing), notice: "Saved #{@space_listing.title}"
     else
       render :new
     end
   end
 
   def show
+    @images = @space_listing.images
   end
 
   def edit
+    if current_user.id == @space_listing.user.id
+      @images = @space_listing.images
+    else
+      redirect_to root_path, notice: "You don't have permission."
+    end
   end
 
   def update
     if @space_listing.update(space_listing_params)
-      redirect_to @space_listing, notice: "Updated #{@space_listing.title}"
+      if params[:images]
+        params[:images].each { |image|
+          @space_listing.images.create(image_url: image)
+        }
+      end
+      redirect_to edit_space_listing_path(@space_listing), notice: "Updated #{@space_listing.title}"
     else
       render :edit
     end
