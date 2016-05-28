@@ -74,9 +74,9 @@
                 <h3>Property Description</h3>
                 <p id="description"><%= @space_listing.description %></p>
 
-                <% @space_listing.images.each do |image| %>
-                <%= image_tag image.image_url %>
-                <% end %>
+                <div class="uploaded-images">
+                  <%= render 'images/list' %>
+                </div>
 
                 <%= link_to "Edit", edit_space_listing_path, class: "btn btn-success btn-lg" %>
                 <%= link_to "Delete", space_listing_path, method: :delete, class: "btn btn-success btn-lg" %>
