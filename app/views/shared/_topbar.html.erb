@@ -1,19 +1,18 @@
 <div class="topbar">
   <div class="container">
     <div class="row">
-      <% if notice.present? %>
-        <div class="alert alert-info">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <p><%= notice %></p>
-        </div>
-      <% end %>
-      <% if alert.present? %>
-        <div class="alert alert-danger">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <p><%= alert %></p>
-        </div>
-      <% end %>
       <div class="col-md-12">
+        <% if notice.present? || alert.present?  %>
+        <div class="alert <%= styleFlash(notice.present?, alert.present?)%>">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <% if notice.present? %>
+          <p><%= notice %></p>
+          <% end %>
+          <% if alert.present? %>
+          <p><%= alert %></p>
+          <% end %>
+        </div>
+        <% end %>
         <ul class="topbar-nav topbar-left">
           <li class="disabled"><a href="#"><i class="fa fa-envelope"></i> info@betterspace.com</a></li>
           <li class="disabled"><a href="#"><i class="fa fa-phone"></i> (+62) - 1234567890</a></li>
