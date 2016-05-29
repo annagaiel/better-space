@@ -1,0 +1,34 @@
+<br><br><br>
+
+<div class="row">
+
+<h1>Booking Space</h1>
+
+<%= form_for @booking do |f| %>
+
+<div class="form-group">
+  <%= f.label :move_in, "Move In" %>
+  <%= f.text_field :move_in, class:"form-control input-group date", "data-provide"=>"datepicker" do %>
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= f.label :move_out, "Move Out" %>
+  <%= f.text_field :move_out, class:"form-control input-group date", "data-provide"=>"datepicker" do %>
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+  <% end %>
+</div>
+
+<%= f.hidden_field :space_listing_id %>
+
+<p>
+  <%= f.submit f.object.new_record? ? "Book Now" : "Update", class:"btn btn-success btn-lg" %>
+</p>
+<% end %>
+
+</div>

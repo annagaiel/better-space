@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-datepicker.min.js
 //= require jquery.easing
 //= require jquery.jcarousel.min
 //= require imagesloaded.pkgd.min
