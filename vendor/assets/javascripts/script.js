@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     /* carousel testimony */
     $('#testislider').carousel({
-        interval: 6000
+        interval: false
     })
 
   /* carousel partner */
@@ -121,12 +121,10 @@ $(document).ready(function(){
     //      }
     // });
 
-
     /* carousel single */
     $('#slider-property').carousel({
-        interval: 6500
+        interval: false
     })
-
 
     /* map property */
     // $('a[href="#location"]').on('shown.bs.tab', function(){
