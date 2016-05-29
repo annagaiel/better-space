@@ -69,7 +69,7 @@
               <h3><%= link_to "#{space_listing.title}", "/space_listings/#{space_listing.id}" %><small><%= space_listing.address %>, <%= space_listing.city %></small></h3>
               <p><%= space_listing.description %></p>
               <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
-              <p><a href="#" class="btn btn-success">Book This Space</a></p>
+              <p><%= link_to "Book Space", "/bookings?space_listing_id=#{space_listing.id}", method: :post, class: "btn btn-success" %></p>
             </div>
           </div>
         </div>

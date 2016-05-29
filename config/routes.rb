@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homes#index'
   resources :space_listings
+  resources :bookings
+
   get '/list_view', to: 'space_listings#list_view'
   resources :images
   # The priority is based upon order of creation: first created -> highest priority.
