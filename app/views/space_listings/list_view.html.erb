@@ -11,8 +11,8 @@
     <!-- begin:sorting -->
     <div class="row sort">
       <div class="col-md-4 col-sm-4 col-xs-3">
-        <a href="search.html" class="btn btn-default"><i class="fa fa-th"></i></a>
-        <a href="search_list.html" class="btn btn-success"><i class="fa fa-list"></i></a>
+        <a href="/space_listings" class="btn btn-default"><i class="fa fa-map"></i></a>
+        <a href="/list_view" class="btn btn-success"><i class="fa fa-list"></i></a>
         <%= style_page_info(page_entries_info @space_listings) %>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-9">
@@ -69,6 +69,7 @@
               <h3><%= link_to "#{space_listing.title}", "/space_listings/#{space_listing.id}" %><small><%= space_listing.address %>, <%= space_listing.city %></small></h3>
               <p><%= space_listing.description %></p>
               <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+              <p><a href="#" class="btn btn-success">Book This Space</a></p>
             </div>
           </div>
         </div>

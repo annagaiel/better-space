@@ -13,6 +13,16 @@ class SpaceListingsController < ApplicationController
     # render "list_view"
   end
 
+  def list_view
+    page_limit = params[:page] || 1
+
+    if current_user
+      @space_listings = current_user.space_listings.page(params[:page]).per(3)
+    else
+      @space_listings = SpaceListing.all.page(params[:page]).per(3)
+    end
+  end
+
   def new
     @space_listing = SpaceListing.new
   end
