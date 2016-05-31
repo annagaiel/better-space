@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-md-12">
                 <h2 id="title"><%= @space_listing.title %></h2>
-                <a href="#" class="btn btn-success">Book This Space</a>
+                <%= link_to "Book This Space", "/bookings/new?space_listing_id=#{@space_listing.id}", class: "btn btn-success" %></p>
 
                 <div id="slider-property" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">

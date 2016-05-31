@@ -24,9 +24,22 @@
 
   </div>
   <br>
+  <% if @space_listing %>
+  <p>Monthly rent: $<%= @space_listing.monthly_rent %></p>
+  <br>
+  <p>Day rent: $<%= @space_listing.day_rent %></p>
+  <%= f.hidden_field :space_listing_id, value:"#{@space_listing.id}" %>
+  <% end %>
   <div class="row">
     <div class="col-md-3 col-xs-6">
-      <%= f.hidden_field :space_listing_id %>
+      <%= f.label :price, "Price" %>
+      <br>
+      <%= f.label :total, "Total" %>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-xs-6">
       <%= f.submit "Book Now", class:"btn btn-success btn-block" %>
     </div>
   </div>
