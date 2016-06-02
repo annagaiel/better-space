@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular.min
+//= require app
 //= require bootstrap
 //= require bootstrap-datepicker.min.js
 //= require jquery.easing

@@ -6,6 +6,12 @@ Rails.application.routes.draw do
 
   get '/list_view', to: 'space_listings#list_view'
   resources :images
+
+  namespace :api do
+    namespace :v1 do
+      get '/space_listings', to: 'space_listings#index'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
