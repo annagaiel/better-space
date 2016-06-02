@@ -12,9 +12,9 @@ json.array! @space_listings do |space_listing|
   json.latitude space_listing.latitude
   json.longitude space_listing.longitude
   json.environment_type space_listing.environment_type
-  json.user_id json.user_id
-  json.monthly_rent json.monthly_rent
-  json.day_rent json.day_rent
-  json.size_height json.size_height
-  json.size_length json.size_length
+  json.user_id space_listing.user_id
+  json.monthly_rent space_listing.monthly_rent
+  json.day_rent space_listing.day_rent
+  json.size_height space_listing.size_height
+  json.size_length space_listing.size_length
 end

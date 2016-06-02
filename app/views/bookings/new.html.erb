@@ -25,16 +25,15 @@
   </div>
   <br>
   <% if @space_listing %>
-  <p>Monthly rent: $<%= @space_listing.monthly_rent %></p>
+  <span>Monthly rent: $</span><span id="monthly_rent"><%= @space_listing.monthly_rent %></span>
   <br>
-  <p>Day rent: $<%= @space_listing.day_rent %></p>
+  <span>Day rent: $</span><span id="day_rent"><%= @space_listing.day_rent %></span>
   <%= f.hidden_field :space_listing_id, value:"#{@space_listing.id}" %>
   <% end %>
   <div class="row">
     <div class="col-md-3 col-xs-6">
       <%= f.label :price, "Price" %>
-      <br>
-      <%= f.label :total, "Total" %>
+      <%= f.text_field :price, disabled:true %>
       <br>
     </div>
   </div>
