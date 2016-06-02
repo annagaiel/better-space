@@ -1,0 +1,15 @@
+<br><br><br>
+
+<div class="row">
+
+<% if @bookings %>
+  <% @bookings.each do |booking| %>
+    <p><%= booking.space_listing.title %></p>
+    <p><%= booking.move_in.strftime("%m/%d/%Y") %></p>
+    <p><%= booking.move_out.strftime("%m/%d/%Y") %></p>
+    <p><%= booking.price %></p>
+    <p><%= booking.approved_status %></p>
+  <% end %>
+<% end %>
+
+</div>
