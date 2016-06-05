@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homes#index'
   resources :space_listings
-  resources :bookings
-
   get '/list_view', to: 'space_listings#list_view'
+  get '/booking_request', to: 'space_listings#booking_request'
+  resources :bookings
   resources :images
 
   namespace :api do

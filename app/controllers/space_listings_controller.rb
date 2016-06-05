@@ -1,5 +1,5 @@
 class SpaceListingsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :booking_request]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,7 +10,6 @@ class SpaceListingsController < ApplicationController
     else
       @space_listings = SpaceListing.all.page(params[:page]).per(3)
     end
-    # render "list_view"
   end
 
   def list_view
@@ -71,6 +70,10 @@ class SpaceListingsController < ApplicationController
   def destroy
     @space_listing.destroy
     redirect_to '/'
+  end
+
+  def booking_request
+    @space_listings = current_user.space_listings
   end
 
   private
