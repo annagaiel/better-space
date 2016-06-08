@@ -36,6 +36,12 @@ class BookingsController < ApplicationController
     @rented_spaces = current_user.bookings
   end
 
+  def toggle_approved_status
+    @booking = Booking.find_by(id: params[:id])
+    @booking.update_attributes(approved_status: !@booking.approved_status)
+    redirect_to "/your_bookings", notice: "Booking approve status was update!"
+  end
+
   def your_bookings
     @space_listings = current_user.space_listings
   end

@@ -22,6 +22,7 @@
         <th>Renter</th>
         <th>Price</th>
         <th>Status</th>
+        <th>Action</th>
       </tr>
       <% @space_listings.each do |space_listing| %>
       <% space_listing.bookings.each do |booking| %>
@@ -32,6 +33,7 @@
         <td><%= booking.user.first_name %> <%= booking.user.last_name %></td>
         <td><%= booking.price %></td>
         <td><%= booking.approved_status %></td>
+        <td><%= link_to "Toggle Approve Status", "/bookings/#{booking.id}/toggle_approved_status", method: :patch %></td>
       </tr>
       <% end %>
       <% end %>
