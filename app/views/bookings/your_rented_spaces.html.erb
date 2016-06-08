@@ -1,0 +1,38 @@
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-3">
+    <ul>
+      <li>
+        <%= link_to "Your Bookings", your_bookings_path %>
+      </li>
+      <li>
+        <%= link_to "Your Rented Spaces", your_rented_spaces_path %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <h1>Your Rented Spaces</h1>
+    <table class="table">
+      <tr>
+        <th>Move In</th>
+        <th>Move Out</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Space Host</th>
+      </tr>
+      <% @rented_spaces.each do |rented_space| %>
+      <tr>
+        <td><%= rented_space.move_in.strftime('%v') %></td>
+        <td><%= rented_space.move_out.strftime('%v') %></td>
+        <td><%= rented_space.price %></td>
+        <td><%= rented_space.approved_status %></td>
+        <td>
+          <%= rented_space.space_listing.user.first_name %> <%= rented_space.space_listing.user.last_name %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

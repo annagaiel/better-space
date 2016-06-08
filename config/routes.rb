@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   root 'homes#index'
   resources :space_listings
   get '/list_view', to: 'space_listings#list_view'
-  get '/booking_request', to: 'space_listings#booking_request'
+  get '/your_bookings', to: 'bookings#your_bookings'
+  get '/your_rented_spaces', to: 'bookings#your_rented_spaces'
+
   resources :bookings
   resources :images
 
   namespace :api do
     namespace :v1 do
       get '/space_listings', to: 'space_listings#index'
+      get '/bookings', to: 'bookings#index'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

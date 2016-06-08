@@ -30,6 +30,16 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def your_rented_spaces
+    @approved_spaces = current_user.bookings.where("approved_status = ?", true)
+    @pending_spaces = current_user.bookings.where("approved_status = ?", false)
+    @rented_spaces = current_user.bookings
+  end
+
+  def your_bookings
+    @space_listings = current_user.space_listings
+  end
+
   private
   def booking_params
     params.require(:booking).permit(:move_in, :move_out,
