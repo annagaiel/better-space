@@ -1,42 +1,54 @@
 <br>
 <br>
 <br>
-<div class="row">
-  <div class="col-md-3">
-    <ul>
-      <li>
-        <%= link_to "Your Bookings", your_bookings_path %>
-      </li>
-      <li>
-        <%= link_to "Your Rented Spaces", your_rented_spaces_path %>
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-9">
-    <h1>Your Bookings</h1>
-    <table class="table">
-      <tr>
-        <th>Title</th>
-        <th>Move In</th>
-        <th>Move Out</th>
-        <th>Renter</th>
-        <th>Price</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <% @space_listings.each do |space_listing| %>
-      <% space_listing.bookings.each do |booking| %>
-      <tr>
-        <td><%= space_listing.title %></td>
-        <td><%= booking.move_in.strftime('%v') %></td>
-        <td><%= booking.move_out.strftime('%v') %></td>
-        <td><%= booking.user.first_name %> <%= booking.user.last_name %></td>
-        <td><%= booking.price %></td>
-        <td><%= booking.approved_status %></td>
-        <td><%= link_to "Toggle Approve Status", "/bookings/#{booking.id}/toggle_approved_status", method: :patch %></td>
-      </tr>
-      <% end %>
-      <% end %>
-    </table>
+<div class="row" ng-app="app">
+  <div ng-controller="bookingCtrl" ng-init="your_bookings_setup()">
+    <div class="row">
+      <div class="col-md-3">
+        <ul>
+          <li>
+            <%= link_to "Your Bookings", your_bookings_path %>
+          </li>
+          <li>
+            <%= link_to "Your Rented Spaces", your_rented_spaces_path %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <h1>Your Bookings</h1>
+        <table class="table">
+          <tr>
+            <th>Title</th>
+            <th>Move In</th>
+            <th>Move Out</th>
+            <th>Renter</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+          <tr ng-repeat="space_listing in spaceListings">
+            <td>{{ space_listing.title }}</td>
+            <td ng-repeat="booking in space_listing.bookings">
+              {{ booking.move_in }}
+            </td>
+            <td ng-repeat="booking in space_listing.bookings">
+              {{ booking.move_out }}
+            </td>
+            <td ng-repeat="booking in space_listing.bookings">
+              {{ booking.renter }}
+            </td>
+            <td ng-repeat="booking in space_listing.bookings">
+              {{ booking.price }}
+            </td>
+            <td ng-repeat="booking in space_listing.bookings">
+              {{ booking.approved_status }}
+            </td>
+            <td ng-repeat="booking in space_listing.bookings">
+              <a data-method="patch" href="/bookings/{{booking.id}}/toggle_approved_status">Toggle Approve Status</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

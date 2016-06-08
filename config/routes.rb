@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/space_listings', to: 'space_listings#index'
-      get '/bookings', to: 'bookings#index'
+      get '/your_bookings', to: 'bookings#your_bookings'
+      get '/your_rented_spaces', to: 'bookings#your_rented_spaces'
+      patch '/bookings/:id/toggle_approved_status', to: 'bookings#toggle_approved_status'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
