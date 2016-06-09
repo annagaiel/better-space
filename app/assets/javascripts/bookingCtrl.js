@@ -19,7 +19,14 @@
         });
       }
 
-
+      $scope.toggleOrder = function(attribute) {
+        if(attribute != $scope.orderAttribute) {
+          $scope.descending = false;
+        }else{
+          $scope.descending = !$scope.descending;
+        }
+        $scope.orderAttribute = attribute;
+      }
       window.$scope = $scope;
   });
 })();

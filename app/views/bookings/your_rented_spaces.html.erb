@@ -18,13 +18,13 @@
         <h1>Your Rented Spaces</h1>
         <table class="table">
           <tr>
-            <th>Move In</th>
-            <th>Move Out</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Space Host</th>
+            <th><a href="#" ng-click="toggleOrder('move_in')">Move In</a></th>
+            <th><a href="#" ng-click="toggleOrder('move_out')">Move Out</a></th>
+            <th><a href="#" ng-click="toggleOrder('price')">Price</a></th>
+            <th><a href="#" ng-click="toggleOrder('status')">Status</a></th>
+            <th><a href="#" ng-click="toggleOrder('host')">Space Host</a></th>
           </tr>
-          <tr ng-repeat="rented_space in rentedSpaces">
+          <tr ng-repeat="rented_space in rentedSpaces | orderBy: orderAttribute:descending">
             <td>{{ rented_space.move_in }}</td>
             <td>{{ rented_space.move_out }}</td>
             <td>{{ rented_space.price }}</td>
