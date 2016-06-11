@@ -34,7 +34,7 @@
           <div class="property-container">
             <div class="property-content-list">
               <div class="property-image-list">
-                <%= image_tag "img13.jpg", alt:"" %>
+                <img src="{{space_listing.images[0]['image_src'].url}}" alt="">
                 <div class="property-price">
                   <h4> {{ space_listing.title }} </h4>
                   <span>${{ space_listing.day_rent | number:2 }}<small>/day</small></span>

@@ -18,6 +18,11 @@ json.array! @space_listings do |space_listing|
     json.full_name space_listing.user.full_name
     json.email space_listing.user.email
   end
+  json.images do
+    json.array! space_listing.images.each do |image|
+      json.image_src image.image_url
+    end
+  end
   json.monthly_rent space_listing.monthly_rent
   json.day_rent space_listing.day_rent
   json.size_height space_listing.size_height
