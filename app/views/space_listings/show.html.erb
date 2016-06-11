@@ -1,5 +1,5 @@
 <br/><br/><br/><br/>
-  <div class="row">
+<div class="row">
   <!-- begin:article -->
   <div class="col-md-9 col-md-push-3">
     <div class="row">
@@ -17,26 +17,18 @@
 
                 <div id="slider-property" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#slider-property" data-slide-to="0" class="">
-                      <%= image_tag "img02.jpg", alt:"" %>
+                    <% @space_listing.images.each_with_index do |image, index| %>
+                    <li data-target="#slider-property" data-slide-to="<%= index %>" class="">
+                      <%= image_tag image.image_url, alt:"" %>
                     </li>
-                    <li data-target="#slider-property" data-slide-to="1" class="active">
-                      <%= image_tag "img03.jpg", alt:"" %>
-                    </li>
-                    <li data-target="#slider-property" data-slide-to="2">
-                      <%= image_tag "img04.jpg", alt:"" %>
-                    </li>
+                    <% end %>
                   </ol>
                   <div class="carousel-inner">
-                    <div class="item">
-                      <%= image_tag "img02.jpg", alt:"" %>
+                    <% @space_listing.images.each_with_index do |image, index| %>
+                    <div class="item <%= "active" if index == 0 %>">
+                      <%= image_tag image.image_url, alt:"" %>
                     </div>
-                    <div class="item active">
-                      <%= image_tag "img03.jpg", alt:"" %>
-                    </div>
-                    <div class="item">
-                      <%= image_tag "img04.jpg", alt:"" %>
-                    </div>
+                    <% end %>
                   </div>
                   <a class="left carousel-control" href="#slider-property" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left"></span>
