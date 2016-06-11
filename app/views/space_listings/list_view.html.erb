@@ -11,35 +11,17 @@
       </div>
       <!-- begin:sorting -->
       <div class="row sort">
-        <div class="col-md-4 col-sm-4 col-xs-3">
+        <div class="col-md-5 col-sm-5 col-xs-5">
           <a href="/space_listings" class="btn btn-default"><i class="fa fa-map"></i></a>
           <a href="/list_view" class="btn btn-success"><i class="fa fa-list"></i></a>
           <%= style_page_info(page_entries_info @space_listings) %>
         </div>
-        <div class="col-md-8 col-sm-8 col-xs-9">
+        <div class="col-md-7 col-sm-7 col-xs-7">
           <form class="form-inline" role="form">
             <span>Sort by : </span>
             <div class="form-group">
-              <label class="sr-only" for="sortby">Sort by : </label>
-              <select class="form-control">
-                <option>Most Recent</option>
-                <option>Price (Low &gt; High)</option>
-                <option>Price (High &gt; Low)</option>
-                <option>Most Popular (Low &gt; High)</option>
-              </select>
-            </div>
-            <span>Show : </span>
-            <div class="form-group">
-              <label class="sr-only" for="show">Show : </label>
-              <select class="form-control">
-                <option>6</option>
-                <option>10</option>
-                <option>15</option>
-                <option>20</option>
-                <option>25</option>
-                <option>50</option>
-                <option>100</option>
-              </select>
+              <a href="#" ng-click="toggleOrder('day_rent', true);">Highest Rent</a>
+              <a href="#" ng-click="toggleOrder('day_rent', false);">Lowest Rent</a>
             </div>
           </form>
         </div>
@@ -48,14 +30,14 @@
 
       <!-- begin:product -->
       <div class="row container-realestate">
-        <div ng-repeat="space_listing in spaceListings" class="col-md-12 col-sm-12 col-xs-12">
+        <div ng-repeat="space_listing in spaceListings | orderBy:orderAttribute:descending" class="col-md-12 col-sm-12 col-xs-12">
           <div class="property-container">
             <div class="property-content-list">
               <div class="property-image-list">
                 <%= image_tag "img13.jpg", alt:"" %>
                 <div class="property-price">
                   <h4> {{ space_listing.title }} </h4>
-                  <span> {{ space_listing.monthly_rent }}<small>/month</small></span>
+                  <span>${{ space_listing.day_rent | number:2 }}<small>/day</small></span>
                 </div>
                 <div class="property-status">
                   <span>For Rent</span>
@@ -69,7 +51,8 @@
                 <h3><a href="/space_listings/{{space_listing.id}}">{{space_listing.title}}</a>
                   <small>{{ space_listing.address }}, {{ space_listing.city }}</small></h3>
                 <p>{{ space_listing.description }}</p>
-                <p><a href="#" class="btn btn-success">More Detail &raquo;</a></p>
+                <p>{{ space_listing.environment_type }}</p>
+                <p>{{ space_listing.size_length }} x {{ space_listing.size_width }} x {{ space_listing.size_height }}</p>
                 <p><a href="/bookings/new?space_listing_id={{space_listing.id}}" class="btn btn-success">Book Space</a></p>
               </div>
             </div>
