@@ -1,11 +1,12 @@
-<div class="row" ng-app="app">
+<div ng-app="app">
   <div ng-controller="spaceListingCtrl" ng-init="setup()">
     <!-- begin:article -->
     <div class="col-md-9 col-md-push-3">
+      <br><br><br>
       <div class="row">
         <div class="col-md-12">
           <div class="heading-title heading-title-alt">
-            <h3>Space Listings</h3>
+            <h3>Space Listings meeting the search criteria</h3>
           </div>
         </div>
       </div>
@@ -50,20 +51,62 @@
               <div class="property-text">
                 <h3><a href="/space_listings/{{space_listing.id}}">{{space_listing.title}}</a>
                   <small>{{ space_listing.address }}, {{ space_listing.city }}</small></h3>
-                <p>{{ space_listing.description }}</p>
-                <p>{{ space_listing.environment_type }}</p>
-                <p>{{ space_listing.size_length }} x {{ space_listing.size_width }} x {{ space_listing.size_height }}</p>
-                <p><a href="/bookings/new?space_listing_id={{space_listing.id}}" class="btn btn-success">Book Space</a></p>
+                  <p>{{ space_listing.description }}</p>
+                  <p>{{ space_listing.environment_type }}</p>
+                  <p>{{ space_listing.size_length }} x {{ space_listing.size_width }} x {{ space_listing.size_height }}</p>
+                  <p><a href="/bookings/new?space_listing_id={{space_listing.id}}" class="btn btn-success">Book Space</a></p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- end:product -->
+        <!-- end:product -->
 
       <%= paginate @space_listings %>
 
+      </div>
+      <!-- end:article -->
+
+      <!-- begin:sidebar -->
+      <div class="col-md-3 col-md-pull-9 sidebar">
+        <br><br><br>
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-header">
+            <h3>Recent Listing</h3>
+          </div>
+          <ul>
+            <li><a href="#">Luxury Villa</a></li>
+            <li><a href="#">Land In Central Park</a></li>
+            <li><a href="#">The Urban Life</a></li>
+            <li><a href="#">Luxury Office</a></li>
+          </ul>
+        </div>
+        <!-- break -->
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-header">
+            <h3>Listing Type</h3>
+          </div>
+          <ul class="list-check">
+            <li><a href="#">Garage</a>&nbsp;(18)</li>
+            <li><a href="#">House</a>&nbsp;(31)</li>
+            <li><a href="#">Office</a>&nbsp;(52)</li>
+            <li><a href="#">Apartment</a>&nbsp;(8)</li>
+          </ul>
+        </div>
+        <!-- break -->
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-header">
+            <h3>Top Host</h3>
+          </div>
+          <ul>
+            <li><a href="#">John Doe</a></li>
+            <li><a href="#">Christoper Drew</a></li>
+            <li><a href="#">Jane Doe</a></li>
+            <li><a href="#">Jeny</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- end:sidebar -->
     </div>
-    <!-- end:article -->
   </div>
-</div>

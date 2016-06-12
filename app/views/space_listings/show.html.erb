@@ -13,30 +13,6 @@
             <div class="row">
               <div class="col-md-12">
                 <h2 id="title"><%= @space_listing.title %></h2>
-                <%= link_to "Book This Space", "/bookings/new?space_listing_id=#{@space_listing.id}", class: "btn btn-success" %></p>
-
-                <div id="slider-property" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <% @space_listing.images.each_with_index do |image, index| %>
-                    <li data-target="#slider-property" data-slide-to="<%= index %>" class="">
-                      <%= image_tag image.image_url, alt:"" %>
-                    </li>
-                    <% end %>
-                  </ol>
-                  <div class="carousel-inner">
-                    <% @space_listing.images.each_with_index do |image, index| %>
-                    <div class="item <%= "active" if index == 0 %>">
-                      <%= image_tag image.image_url, alt:"" %>
-                    </div>
-                    <% end %>
-                  </div>
-                  <a class="left carousel-control" href="#slider-property" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                  </a>
-                  <a class="right carousel-control" href="#slider-property" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                  </a>
-                </div>
                 <h3>Listing Overview</h3>
                 <table class="table table-bordered">
                   <tr>
@@ -68,13 +44,11 @@
                 <input type="hidden" id="longtitude" value="<%= @space_listing.longitude %>">
                 <h3>Property Description</h3>
                 <p id="description"><%= @space_listing.description %></p>
-
-                <div class="uploaded-images">
-                  <%= render 'images/list' %>
+                <div class="uploaded-images"><%= render 'images/list' %></div>
+                <div class="pull-right control-group">
+                  <%= link_to "Edit", edit_space_listing_path, class: "btn btn-success btn-lg" %>
+                  <%= link_to "Delete", space_listing_path, method: :delete, class: "btn btn-success btn-lg" %>
                 </div>
-
-                <%= link_to "Edit", edit_space_listing_path, class: "btn btn-success btn-lg" %>
-                <%= link_to "Delete", space_listing_path, method: :delete, class: "btn btn-success btn-lg" %>
               </div>
             </div>
 
@@ -144,35 +118,81 @@
         </div>
       </div>
       <!-- end:article -->
+      <!-- begin:sidebar -->
+      <div class="col-md-3 col-md-pull-9 sidebar">
+        <div class="widget-white favorite">
+          <a href="#"><i class="fa fa-heart"></i> Add to favorite</a><br>
+          <%= link_to "Book This Space", "/bookings/new?space_listing_id=#{@space_listing.id}", class: "btn btn-success" %>
+        </div>
+
+        <!-- break -->
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-header">
+            <h3>Recent Property</h3>
+          </div>
+          <ul>
+            <li><a href="#">Luxury Villa</a></li>
+            <li><a href="#">Land In Central Park</a></li>
+            <li><a href="#">The Urban Life</a></li>
+            <li><a href="#">Luxury Office</a></li>
+          </ul>
+        </div>
+        <!-- break -->
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-header">
+            <h3>Property Type</h3>
+          </div>
+          <ul class="list-check">
+            <li><a href="#">Garage</a>&nbsp;(18)</li>
+            <li><a href="#">House</a>&nbsp;(31)</li>
+            <li><a href="#">Office</a>&nbsp;(52)</li>
+            <li><a href="#">Apartment</a>&nbsp;(8)</li>
+          </ul>
+        </div>
+        <!-- break -->
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-header">
+            <h3>Top Host</h3>
+          </div>
+          <ul>
+            <li><a href="#">John Doe</a></li>
+            <li><a href="#">Christoper Drew</a></li>
+            <li><a href="#">Jane Doe</a></li>
+            <li><a href="#">Jeny</a></li>
+          </ul>
+        </div>
+        <!-- break -->
+      </div>
+      <!-- end:sidebar -->
     </div>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap">
     </script>
     <script>
-        function initMap() {
-          var place = {
-            lat: <%= @space_listing.latitude %>,
-            lng: <%= @space_listing.longitude %>};
+    function initMap() {
+      var place = {
+        lat: <%= @space_listing.latitude %>,
+        lng: <%= @space_listing.longitude %>};
 
-            var map = new google.maps.Map(document.getElementById('map-canvas2'), {
-              zoom: 12,
-              center: place
-            });
+        var map = new google.maps.Map(document.getElementById('map-canvas2'), {
+          zoom: 12,
+          center: place
+        });
 
-            var contentString = document.getElementById("description").innerHTML;
+        var contentString = document.getElementById("description").innerHTML;
 
-            var infowindow = new google.maps.InfoWindow({
-              content: contentString,
-              maxWidth: 200
-            });
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
 
-            var marker = new google.maps.Marker({
-              position: place,
-              map: map,
-              title: document.getElementById("title").innerHTML
-            });
-            marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
-          }
-    </script>
+        var marker = new google.maps.Marker({
+          position: place,
+          map: map,
+          title: document.getElementById("title").innerHTML
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+      </script>
