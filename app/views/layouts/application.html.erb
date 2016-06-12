@@ -9,7 +9,17 @@
 <body id="top">
   <%= render "shared/topbar" %>
   <%= render "shared/navbar" %>
-
+  <% if notice.present? || alert.present?  %>
+  <div class="alert <%= styleFlash(notice.present?, alert.present?)%>">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <% if notice.present? %>
+    <p><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+    <p><%= alert %></p>
+    <% end %>
+  </div>
+  <% end %>
   <div id="content">
     <div class="container">
       <%= yield %>

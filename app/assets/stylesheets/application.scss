@@ -22,7 +22,8 @@
 @import "font-awesome";
 
 .alert {
-  padding: 7px;
+  padding: 10;
+  margin: auto 0;
 }
 
 .topbar {
@@ -75,14 +76,15 @@
 }
 
 .inner_container {
-    margin: 25px 0px;
+    margin: 0 auto;
     padding-left: 15px;
     padding-right: 15px;
     background-color: #fff;
     border-style: solid;
     border-width: 6px;
     border-color: #E5E5E5;
-    border-radius: 18px
+    border-radius: 18px;
+    width: 660px;
 }
 
 .radio input[type="radio"],

@@ -74,3 +74,11 @@ html, body {
 .logo{
   margin-top: 20px;
 }
+
+.form-inline > * {
+   margin:5px 3px;
+}
+
+.dropdown-menu>li>a {
+  background-color: #7ABA3A;
+}
