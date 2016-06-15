@@ -17,6 +17,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'fog'
 gem "mini_magick"
 gem "figaro"
+gem 'angular-rails-templates'
 
 group :development, :test do
   gem 'byebug'

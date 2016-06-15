@@ -22,23 +22,22 @@
         <div class="col-md-5 col-sm-5 col-xs-5">
           <a href="/space_listings" class="btn btn-default"><i class="fa fa-map"></i></a>
           <a href="/list_view" class="btn btn-success"><i class="fa fa-list"></i></a>
-          <%= style_page_info(page_entries_info @space_listings) %>
         </div>
         <div class="col-md-7 col-sm-7 col-xs-7">
           <form class="form-inline" role="form">
             <span>Sort by : </span>
             <div class="form-group">
-              <a href="#" ng-click="toggleOrder('day_rent', false);">Highest Rent</a>
-              <a href="#" ng-click="toggleOrder('day_rent', true);">Lowest Rent</a>
+              <a href="#" ng-click="toggleOrder('day_rent', true);">Highest Rent</a>
+              <a href="#" ng-click="toggleOrder('day_rent', false);">Lowest Rent</a>
             </div>
           </form>
         </div>
       </div>
       <!-- end:sorting -->
-
+      <dir-pagination-controls boundary-links="true" pagination-id="listingsPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
       <!-- begin:product -->
       <div class="row container-realestate">
-        <div ng-repeat="space_listing in spaceListings | filter:q | orderBy:'day_rent':descending" class="col-md-12 col-sm-12 col-xs-12">
+        <div dir-paginate="space_listing in spaceListings | filter:q | orderBy:'day_rent':descending | itemsPerPage: pageSize" current-page="currentPage" pagination-id="listingsPagination" class="col-md-12 col-sm-12 col-xs-12">
           <div class="property-container">
             <div class="property-content-list">
               <div class="property-image-list">
@@ -69,7 +68,7 @@
         </div>
         <!-- end:product -->
 
-      <%= paginate @space_listings %>
+        <dir-pagination-controls boundary-links="true" pagination-id="listingsPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
 
       </div>
       <!-- end:article -->

@@ -2,6 +2,12 @@
   "use Strict"
   angular.module("app").controller("spaceListingCtrl",
   function($scope, $http){
+    $scope.currentPage = 1;
+    $scope.pageSize = 2;
+
+    $scope.pageChangeHandler = function(num) {
+      console.log('space listing page changed to ' + num);
+    };
 
     $scope.spaceListings = [];
     $scope.setup = function(){

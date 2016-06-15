@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular.min
+//= require dirPagination
+//= require angular-rails-templates
+//= require_tree ../templates
 //= require app
 //= require bootstrap
 //= require bootstrap-datepicker.min.js
