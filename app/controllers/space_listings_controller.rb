@@ -15,11 +15,13 @@ class SpaceListingsController < ApplicationController
   def list_view
     page_limit = params[:page] || 1
 
-    if current_user
-      @space_listings = current_user.space_listings.page(params[:page]).per(3)
-    else
-      @space_listings = SpaceListing.all.page(params[:page]).per(3)
-    end
+    @space_listings = SpaceListing.all.page(params[:page]).per(3)
+    @recent_listings = SpaceListing.order("created_at DESC").limit(4)
+    @top_hosts = User.order(:created_at).limit(4)
+    @garage_count = SpaceListing.where("space_type": "Garage").count
+    @house_count = SpaceListing.where("space_type": "House").count
+    @outdoor_count = SpaceListing.where("environment_type": "Outdoor").count
+    @indoor_count = SpaceListing.where("environment_type": "Indoor").count
   end
 
   def new

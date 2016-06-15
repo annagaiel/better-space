@@ -1,0 +1,38 @@
+<!-- begin:sidebar -->
+<div class="col-md-3 col-md-pull-9 sidebar">
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>Recent Listing</h3>
+    </div>
+    <ul>
+      <% @recent_listings.each do |listing| %>
+      <li><a href="/space_listings/<%= listing.id %>"><%= listing.title.capitalize %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>Listing Type</h3>
+    </div>
+    <ul class="list-check">
+      <li><a href="#">Garage</a>&nbsp;(<%= @garage_count %>)</li>
+      <li><a href="#">House</a>&nbsp;(<%= @house_count %>)</li>
+      <li><a href="#">Outdoor</a>&nbsp;(<%= @outdoor_count %>)</li>
+      <li><a href="#">Indoor</a>&nbsp;(<%= @indoor_count %>)</li>
+    </ul>
+  </div>
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>Top Host</h3>
+    </div>
+    <ul>
+      <% @top_hosts.each do |host| %>
+      <li><a href="/user/<%= host.id %>"><%= host.full_name %></a></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
+<!-- end:sidebar -->

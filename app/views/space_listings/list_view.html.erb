@@ -5,10 +5,16 @@
     <!-- begin:article -->
     <div class="col-md-9 col-md-push-3">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <div class="heading-title heading-title-alt">
-            <h3>Space Listings meeting the search criteria</h3>
+            <h4>Space Listings meeting the search criteria</h4>
           </div>
+        </div>
+        <div class="col-md-4">
+          <form class="form-inline" role="form">
+          <label for="search">Search:</label>
+          <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+          </form>
         </div>
       </div>
       <!-- begin:sorting -->
@@ -22,8 +28,8 @@
           <form class="form-inline" role="form">
             <span>Sort by : </span>
             <div class="form-group">
-              <a href="#" ng-click="toggleOrder('day_rent', true);">Highest Rent</a>
-              <a href="#" ng-click="toggleOrder('day_rent', false);">Lowest Rent</a>
+              <a href="#" ng-click="toggleOrder('day_rent', false);">Highest Rent</a>
+              <a href="#" ng-click="toggleOrder('day_rent', true);">Lowest Rent</a>
             </div>
           </form>
         </div>
@@ -32,7 +38,7 @@
 
       <!-- begin:product -->
       <div class="row container-realestate">
-        <div ng-repeat="space_listing in spaceListings | orderBy:orderAttribute:descending" class="col-md-12 col-sm-12 col-xs-12">
+        <div ng-repeat="space_listing in spaceListings | filter:q | orderBy:'day_rent':descending" class="col-md-12 col-sm-12 col-xs-12">
           <div class="property-container">
             <div class="property-content-list">
               <div class="property-image-list">
@@ -67,48 +73,9 @@
 
       </div>
       <!-- end:article -->
-
-      <!-- begin:sidebar -->
-      <div class="col-md-3 col-md-pull-9 sidebar">
-        <div class="widget widget-sidebar widget-white">
-          <div class="widget-header">
-            <h3>Recent Listing</h3>
-          </div>
-          <ul>
-            <li><a href="#">Luxury Villa</a></li>
-            <li><a href="#">Land In Central Park</a></li>
-            <li><a href="#">The Urban Life</a></li>
-            <li><a href="#">Luxury Office</a></li>
-          </ul>
-        </div>
-        <!-- break -->
-        <div class="widget widget-sidebar widget-white">
-          <div class="widget-header">
-            <h3>Listing Type</h3>
-          </div>
-          <ul class="list-check">
-            <li><a href="#">Garage</a>&nbsp;(18)</li>
-            <li><a href="#">House</a>&nbsp;(31)</li>
-            <li><a href="#">Office</a>&nbsp;(52)</li>
-            <li><a href="#">Apartment</a>&nbsp;(8)</li>
-          </ul>
-        </div>
-        <!-- break -->
-        <div class="widget widget-sidebar widget-white">
-          <div class="widget-header">
-            <h3>Top Host</h3>
-          </div>
-          <ul>
-            <li><a href="#">John Doe</a></li>
-            <li><a href="#">Christoper Drew</a></li>
-            <li><a href="#">Jane Doe</a></li>
-            <li><a href="#">Jeny</a></li>
-          </ul>
-        </div>
-
-      </div>
-      <!-- end:sidebar -->
+      <%= render "shared/sidebar" %>
     </div>
   </div>
+  <!-- end:ng-app -->
 </div>
 </div>

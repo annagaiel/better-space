@@ -23,8 +23,8 @@ json.array! @space_listings do |space_listing|
       json.image_src image.image_url
     end
   end
-  json.monthly_rent space_listing.monthly_rent
-  json.day_rent space_listing.day_rent
+  json.monthly_rent space_listing.monthly_rent.to_i
+  json.day_rent space_listing.day_rent.to_i
   json.size_height space_listing.size_height
   json.size_length space_listing.size_length
   json.size_width space_listing.size_width

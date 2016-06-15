@@ -10,11 +10,15 @@
       });
     }
 
+    $scope.descending = false;
+
     $scope.toggleOrder = function(attribute, direction) {
-      if(attribute == 'day_rent') {
+      console.log("toggle order");
+
+      if($scope.descending != direction) {
         $scope.descending = direction;
+        console.log($scope.descending);
       }
-      $scope.orderAttribute = attribute;
     }
 
     window.$scope = $scope;
