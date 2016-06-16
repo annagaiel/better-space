@@ -1,12 +1,16 @@
 <div id="content">
   <div class="container">
     <div class="row">
-
-<h1>Booking Space Show Page</h1>
-
-  <p>Your booking is now pending and host needs to approve your request.</p>
-
-  <%= link_to "View all bookings", bookings_path %>
-</div>
-</div>
+      <div class="inner_container">
+        <h2>Booking Request Sent</h2>
+        <p>Your booking is now pending and host needs to approve your request.</p>
+        <div class="row">
+          <div class="col-md-12 col-xs-12">
+            <%= link_to "View your rented spaces request", your_rented_spaces_path, class:"btn btn-success btn-block" %>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
 </div>

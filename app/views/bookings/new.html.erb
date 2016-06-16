@@ -24,13 +24,20 @@
         <div class="row">
           <div class="col-md-6 col-xs-6">
             <% if @space_listing %>
-            <label>Day rent: </label><span id="day_rent"> <%= number_to_currency @space_listing.day_rent %></span>
+            <label>Rent per Day:</label>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <input id="day_rent" class="form-control" disabled="true" value="<%= number_with_precision @space_listing.day_rent, :precision => 2 %>" ></input>
+            </div>
             <%= f.hidden_field :space_listing_id, value:"#{@space_listing.id}" %>
             <% end %>
           </div>
           <div class="col-md-6 col-xs-6">
             <%= f.label :price, "Price: " %>
-            <%= f.text_field :price, disabled:true %>
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <%= f.text_field :price, disabled:true, class:"form-control", 'aria-label':'Amount (to the nearest dollar)' %>
+            </div>
           </div>
         </div>
         <br>
