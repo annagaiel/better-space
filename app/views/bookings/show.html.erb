@@ -5,14 +5,14 @@
         <%= form_tag charges_path do %>
         <article>
           <label class="amount">
-            <span>Price: $<%= @booking.price %></span>
+            <span>Price: <%= number_to_currency @booking.price %></span>
           </label>
         </article>
         <%= hidden_field_tag 'booking_id', @booking.id %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-description=<%= @booking.space_listing.title %>
-        data-amount=<%= @booking.price %>
+        data-description="<%= @booking.space_listing.title %> (<%= number_to_currency @booking.price %>)"
+        data-amount=<%= (@booking.price * 100).to_i %>
         data-locale="auto">
         </script>
         <% end %>
