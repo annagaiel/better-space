@@ -18,6 +18,7 @@ gem 'fog'
 gem "mini_magick"
 gem "figaro"
 gem 'angular-rails-templates'
+gem 'stripe'
 
 group :development, :test do
   gem 'byebug'

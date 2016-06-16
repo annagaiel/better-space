@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   devise_for :users
   root 'homes#index'
   resources :space_listings
+
   get '/list_view', to: 'space_listings#list_view'
   get '/your_bookings', to: 'bookings#your_bookings'
   get '/your_rented_spaces', to: 'bookings#your_rented_spaces'
   patch '/bookings/:id/toggle_approved_status', to: 'bookings#toggle_approved_status'
   resources :bookings
   resources :images
+
+  resources :charges, only: [:create]
 
   namespace :api do
     namespace :v1 do
