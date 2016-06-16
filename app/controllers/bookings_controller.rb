@@ -14,6 +14,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new
     @booking.user_id = current_user.id
+    @booking.price = params[:booking][:price]
+    @booking.space_listing_id = params[:booking][:space_listing_id]
+    @booking.approved_status = false
     start_date = params[:booking][:move_in]
     end_date = params[:booking][:move_out]
     @booking.move_in = parse_date(start_date)
@@ -22,7 +25,7 @@ class BookingsController < ApplicationController
     if @booking.save
       render :show
     else
-      render :new
+      redirect_to "/bookings/new/?space_listing_id=#{@booking.space_listing_id}", alert: "Date was already booked!"
     end
   end
 
@@ -48,8 +51,7 @@ class BookingsController < ApplicationController
 
   private
   def booking_params
-    params.require(:booking).permit(:move_in, :move_out,
-    :total, :price, :space_listing_id)
+    params.require(:booking).permit(:move_in, :move_out, :total, :price, :space_listing_id)
   end
 
   def parse_date(date)
