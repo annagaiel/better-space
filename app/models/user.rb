@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :space_listings
   has_many :bookings
+  has_many :favorites
 
   def full_name
     return "#{first_name} #{last_name}"
