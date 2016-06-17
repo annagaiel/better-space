@@ -74,8 +74,15 @@ class SpaceListingsController < ApplicationController
 
   def toggle_favorite
     @space_listing = SpaceListing.find_by(id: params[:id])
-    @space_listing.update_attributes(is_favorite: !@space_listing.is_favorite)
-    redirect_to "/list_view", notice: "#{@space_listing.title} was added to favorites"
+    favorite_space =  Favorite.where(space_listing_id: @space_listing.id, user_id: current_user.id).count
+    if favorite_space > 0
+      favorite = Favorite.find_by(space_listing_id: @space_listing.id, user_id: current_user.id)
+      favorite.destroy
+      redirect_to "/list_view", alert: "#{@space_listing.title} was removed to favorites"
+    else
+      Favorite.create(space_listing_id: @space_listing.id, user_id: current_user.id)
+      redirect_to "/list_view", notice: "#{@space_listing.title} was added to favorites"
+    end
   end
 
   def booking_request
