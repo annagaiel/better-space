@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root 'homes#index'
   resources :space_listings
   patch '/space_listings/:id/toggle_favorite', to: 'space_listings#toggle_favorite'
-  get '/favorites', to: 'users#favorites_list' 
+  get '/favorites', to: 'users#favorites_list'
+  delete '/favorites/:id', to: 'users#remove_favorite'
   get '/list_view', to: 'space_listings#list_view'
   get '/your_bookings', to: 'bookings#your_bookings'
   get '/your_rented_spaces', to: 'bookings#your_rented_spaces'

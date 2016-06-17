@@ -1,1 +1,23 @@
-<h2>Your List of Favorite Space Listings</h2>
+<div id="content">
+  <div class="container">
+    <div class="inner_container">
+      <h2>Your List of Favorite Space Listings</h2>
+      <% if @favorites  %>
+      <table class="table">
+        <tr>
+          <th>Title</th>
+          <th colspan="2">Address</th>
+        <% @favorites.each do |favorite| %>
+        <tr>
+          <td><%= favorite.space_listing.title %></td>
+          <td><%= favorite.space_listing.address %></td>
+          <td><%= link_to "Remove", "/favorites/#{favorite.id}", method: :delete %></td>
+        </tr>
+        <% end %>
+      </table>
+      <% else %>
+      <p>You don't have any favorites yet!.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
