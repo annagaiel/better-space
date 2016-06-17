@@ -72,6 +72,12 @@ class SpaceListingsController < ApplicationController
     redirect_to '/'
   end
 
+  def toggle_favorite
+    @space_listing = SpaceListing.find_by(id: params[:id])
+    @space_listing.update_attributes(is_favorite: !@space_listing.is_favorite)
+    redirect_to "/list_view", notice: "#{@space_listing.title} was added to favorites"
+  end
+
   def booking_request
     @space_listings = current_user.space_listings
   end
