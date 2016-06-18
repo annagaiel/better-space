@@ -34,6 +34,7 @@
                 <li><%= link_to "Your Rented Spaces", your_rented_spaces_path %></li>
               </ul>
           </li>
+          <li><%= link_to 'Settings', edit_user_registration_path %></li>
           <li><%= link_to 'Sign out', destroy_user_session_path, :class => "signup", method: :delete %></li>
         <% else %>
           <li><%= link_to 'Sign in', new_user_session_path, :class => "signin" %></li>

@@ -19,6 +19,7 @@ gem "mini_magick"
 gem "figaro"
 gem 'angular-rails-templates'
 gem 'stripe'
+gem 'gravatarify', '~> 3.0.0'
 
 group :development, :test do
   gem 'byebug'
