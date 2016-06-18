@@ -7,11 +7,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.score = params[:score].to_i
     @review.user_id = current_user.id
     if @review.save
       redirect_to space_listing_path(@review.space_listing), notice: 'Review was successfully created.'
     else
-      render :new
+      redirect_to space_listing_path(@review.space_listing), notice: 'Error review was not created.'
     end
   end
 
@@ -35,6 +36,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:content, :space_listing_id)
+    params.require(:review).permit(:content, :space_listing_id, :score)
   end
 end

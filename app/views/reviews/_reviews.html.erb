@@ -4,4 +4,20 @@
   <%= review.content %>
   by <%= review.user.full_name %>
 </p>
+<div class="starability-grow">
+  <input type="radio" disabled id="growing-rate5" name="rating" value="5" <%= "checked" if review.score == 5 %>>
+  <label for="growing-rate5" title="Amazing">5 stars</label>
+
+  <input type="radio" disabled id="growing-rate4" name="rating" value="4" <%= "checked" if review.score == 4 %>>
+  <label for="growing-rate4" title="Very good">4 stars</label>
+
+  <input type="radio" disabled id="growing-rate3" name="rating" value="3" <%= "checked" if review.score == 3 %>>
+  <label for="growing-rate3" title="Average">3 stars</label>
+
+  <input type="radio" disabled id="growing-rate2" name="rating" value="2" <%= "checked" if review.score == 2 %>>
+  <label for="growing-rate2" title="Not good">2 stars</label>
+
+  <input type="radio" disabled id="growing-rate1" name="rating" value="1" <%= "checked" if review.score == 1 %>>
+  <label for="growing-rate1" title="Terrible">1 star</label>
+</div>
 <% end %>
