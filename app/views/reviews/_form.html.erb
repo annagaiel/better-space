@@ -1,0 +1,9 @@
+<%= form_for @review do |f| %>
+  <div class="form-group">
+    <%= f.text_field :content, required: true, class:"form-control", placeholder:"Enter your review here ..." %>
+    <%= f.hidden_field :space_listing_id, value:"#{@space_listing.id}" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit f.object.new_record? ? "Post Review" : "Update Review", class:"btn btn-success btn-sm" %>
+  </div>
+<% end %>

@@ -1,192 +1,225 @@
 <div id="content">
   <div class="container">
-  <div class="row">
-  <!-- begin:article -->
-  <div class="col-md-9 col-md-push-3">
     <div class="row">
-      <div class="col-md-12 single-post">
-        <ul id="myTab" class="nav nav-tabs nav-justified">
-          <li class="active"><a href="#detail" data-toggle="tab"><i class="fa fa-university"></i> Listing Detail</a></li>
-          <li><a href="#location" data-toggle="tab"><i class="fa fa-paper-plane-o"></i> Listing Location</a></li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade in active" id="detail">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 id="title"><%= @space_listing.title %></h2>
-                <h3>Listing Overview</h3>
-                <table class="table table-bordered">
-                  <tr>
-                    <td><strong>Address</strong></td>
-                    <td><%= @space_listing.address %>, <%= @space_listing.city %> <%= @space_listing.zip_code %> <%= @space_listing.state %></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Day rent</strong></td>
-                    <td><%= @space_listing.day_rent %></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Monthly rent</strong></td>
-                    <td><%= @space_listing.monthly_rent %></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Space type</strong></td>
-                    <td><%= @space_listing.space_type %></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Environment type</strong></td>
-                    <td><%= @space_listing.environment_type %></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Size</strong></td>
-                    <td><strong>L</strong> <%= @space_listing.size_length %>ft x  <strong>W</strong> <%= @space_listing.size_width %>ft x <strong>H</strong> <%= @space_listing.size_length %>ft</td>
-                  </tr>
-                </table>
-                <input type="hidden" id="latitude" value="<%= @space_listing.latitude %>">
-                <input type="hidden" id="longtitude" value="<%= @space_listing.longitude %>">
-                <h3>Property Description</h3>
-                <p id="description"><%= @space_listing.description %></p>
-                <div class="uploaded-images"><%= render 'images/list' %></div>
-                <div class="pull-right control-group">
-                  <%= link_to "Edit", edit_space_listing_path, class: "btn btn-success btn-lg" %>
-                  <%= link_to "Delete", space_listing_path, method: :delete, class: "btn btn-success btn-lg" %>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!-- break -->
-          <div class="tab-pane fade" id="location">
-            <div class="row">
-              <div class="col-md-12">
-                <div id="map-canvas2"></div>
-                <div id="pano"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <h3>Contact Owner</h3>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-sm-6">
-                <div class="team-container team-dark">
-                  <div class="team-image">
-                    <%= image_tag "team01.jpg", alt:'' %>
-                  </div>
-                  <div class="team-description">
-                    <h3><%= @space_listing.user.email %></h3>
-                    <p><i class="fa fa-phone"></i> Office : 021-234-5678<br>
-                      <i class="fa fa-mobile"></i> Mobile : +62-3456-78910<br>
-                      <i class="fa fa-print"></i> Fax : 021-234-5679</p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <div class="team-social">
-                          <span><a href="#" title="Twitter" rel="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a></span>
-                          <span><a href="#" title="Facebook" rel="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a></span>
-                          <span><a href="#" title="Google Plus" rel="tooltip" data-placement="top"><i class="fa fa-google-plus"></i></a></span>
-                          <span><a href="#" title="Email" rel="tooltip" data-placement="top"><i class="fa fa-envelope"></i></a></span>
-                          <span><a href="#" title="LinkedIn" rel="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a></span>
+      <!-- begin:article -->
+      <div class="col-md-9 col-md-push-3">
+        <div class="row">
+          <div class="col-md-12 single-post">
+            <ul id="myTab" class="nav nav-tabs nav-justified">
+              <li class="active"><a href="#detail" data-toggle="tab"><i class="fa fa-university"></i> Listing Detail</a></li>
+              <li><a href="#location" data-toggle="tab"><i class="fa fa-paper-plane-o"></i> Listing Location</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="detail">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 id="title"><%= @space_listing.title %></h2>
+                    <% if @images %>
+                    <div id="slider-property" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                        <% @space_listing.images.each_with_index do |image, index| %>
+                        <li data-target="#slider-property" data-slide-to="<%= index %>" class="">
+                          <%= image_tag image.image_url, alt:"" %>
+                        </li>
+                        <% end %>
+                      </ol>
+                      <div class="carousel-inner">
+                        <% @space_listing.images.each_with_index do |image, index| %>
+                        <div class="item <%= "active" if index == 0 %>">
+                          <%= image_tag image.image_url, alt:"" %>
                         </div>
+                        <% end %>
+                      </div>
+                      <a class="left carousel-control" href="#slider-property" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                      </a>
+                      <a class="right carousel-control" href="#slider-property" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                      </a>
+                    </div>
+                    <% end %>
+                    <h3>Listing Overview</h3>
+                    <table class="table table-bordered">
+                      <tr>
+                        <td><strong>Address</strong></td>
+                        <td><%= @space_listing.address %>, <%= @space_listing.city %> <%= @space_listing.zip_code %> <%= @space_listing.state %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Day rent</strong></td>
+                        <td><%= @space_listing.day_rent %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Monthly rent</strong></td>
+                        <td><%= @space_listing.monthly_rent %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Space type</strong></td>
+                        <td><%= @space_listing.space_type %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Environment type</strong></td>
+                        <td><%= @space_listing.environment_type %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Size</strong></td>
+                        <td><strong>L</strong> <%= @space_listing.size_length %>ft x  <strong>W</strong> <%= @space_listing.size_width %>ft x <strong>H</strong> <%= @space_listing.size_length %>ft</td>
+                      </tr>
+                    </table>
+                    <input type="hidden" id="latitude" value="<%= @space_listing.latitude %>">
+                    <input type="hidden" id="longtitude" value="<%= @space_listing.longitude %>">
+                    <h3>Property Description</h3>
+                    <p id="description"><%= @space_listing.description %></p>
+                    <% if @space_listing.user == current_user %>
+                    <div class="pull-right control-group">
+                      <%= link_to "Edit", edit_space_listing_path, class: "btn btn-success btn-lg" %>
+                      <%= link_to "Delete", space_listing_path, method: :delete, class: "btn btn-success btn-lg" %>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+
+              </div>
+              <!-- break -->
+              <div class="tab-pane fade" id="location">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div id="map-canvas2"></div>
+                    <div id="pano"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3>Contact Owner</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="team-container team-dark">
+                      <div class="team-image">
+                        <%= image_tag "team01.jpg", alt:'' %>
+                      </div>
+                      <div class="team-description">
+                        <h3><%= @space_listing.user.email %></h3>
+                        <p><i class="fa fa-phone"></i> Office : 021-234-5678<br>
+                          <i class="fa fa-mobile"></i> Mobile : +62-3456-78910<br>
+                          <i class="fa fa-print"></i> Fax : 021-234-5679</p>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <div class="team-social">
+                              <span><a href="#" title="Twitter" rel="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a></span>
+                              <span><a href="#" title="Facebook" rel="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a></span>
+                              <span><a href="#" title="Google Plus" rel="tooltip" data-placement="top"><i class="fa fa-google-plus"></i></a></span>
+                              <span><a href="#" title="Email" rel="tooltip" data-placement="top"><i class="fa fa-envelope"></i></a></span>
+                              <span><a href="#" title="LinkedIn" rel="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <form>
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control input-lg" placeholder="Enter name : ">
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control input-lg" placeholder="Enter email : ">
+                          </div>
+                          <div class="form-group">
+                            <label for="telp">Telp.</label>
+                            <input type="text" class="form-control input-lg" placeholder="Enter phone number : ">
+                          </div>
+                          <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control input-lg" rows="7" placeholder="Type a message : "></textarea>
+                          </div>
+                          <div class="form-group">
+                            <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-6">
-                    <form>
-                      <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control input-lg" placeholder="Enter name : ">
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control input-lg" placeholder="Enter email : ">
-                      </div>
-                      <div class="form-group">
-                        <label for="telp">Telp.</label>
-                        <input type="text" class="form-control input-lg" placeholder="Enter phone number : ">
-                      </div>
-                      <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea class="form-control input-lg" rows="7" placeholder="Type a message : "></textarea>
-                      </div>
-                      <div class="form-group">
-                        <input type="submit" name="submit" value="Send Message" class="btn btn-success btn-lg">
-                      </div>
-                    </form>
-                  </div>
                 </div>
               </div>
             </div>
+            <!-- reviews -->
+            <div class="col-md-12 review_container">
+              <h3>Reviews by People</h3>
+              <%= render 'reviews/form' %>
+              <h5>All reviews</h5>
+              <%= render 'reviews/reviews' %>
+            </div>
+            <!--  end of reviews -->
           </div>
+          <!-- end:article -->
+          <!-- begin:sidebar -->
+          <div class="col-md-3 col-md-pull-9 sidebar">
+            <div class="widget-white favorite">
+              <a href="#"><i class="fa fa-heart"></i> Add to favorite</a><br>
+              <%= link_to "Book This Space", "/bookings/new?space_listing_id=#{@space_listing.id}", class: "btn btn-success" %>
+            </div>
+
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Recent Property</h3>
+              </div>
+              <ul>
+                <li><a href="#">Luxury Villa</a></li>
+                <li><a href="#">Land In Central Park</a></li>
+                <li><a href="#">The Urban Life</a></li>
+                <li><a href="#">Luxury Office</a></li>
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Property Type</h3>
+              </div>
+              <ul class="list-check">
+                <li><a href="#">Garage</a>&nbsp;(18)</li>
+                <li><a href="#">House</a>&nbsp;(31)</li>
+                <li><a href="#">Office</a>&nbsp;(52)</li>
+                <li><a href="#">Apartment</a>&nbsp;(8)</li>
+              </ul>
+            </div>
+            <!-- break -->
+            <div class="widget widget-sidebar widget-white">
+              <div class="widget-header">
+                <h3>Top Host</h3>
+              </div>
+              <ul>
+                <li><a href="#">John Doe</a></li>
+                <li><a href="#">Christoper Drew</a></li>
+                <li><a href="#">Jane Doe</a></li>
+                <li><a href="#">Jeny</a></li>
+              </ul>
+            </div>
+            <!-- break -->
+          </div>
+          <!-- end:sidebar -->
+        </div>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap">
+        </script>
+        <script>
+        function initMap() {
+          var place = {
+            lat: <%= @space_listing.latitude %>,
+            lng: <%= @space_listing.longitude %>};
+
+            var map = new google.maps.Map(document.getElementById('map-canvas2'), {
+              zoom: 14,
+              center: place
+            });
+
+            var panorama = new google.maps.StreetViewPanorama( document.getElementById('pano'), {
+              position: place,
+              pov: { heading: 34, pitch: 10 }
+            });
+            map.setStreetView(panorama);
+          }
+          </script>
         </div>
       </div>
-      <!-- end:article -->
-      <!-- begin:sidebar -->
-      <div class="col-md-3 col-md-pull-9 sidebar">
-        <div class="widget-white favorite">
-          <a href="#"><i class="fa fa-heart"></i> Add to favorite</a><br>
-          <%= link_to "Book This Space", "/bookings/new?space_listing_id=#{@space_listing.id}", class: "btn btn-success" %>
-        </div>
-
-        <!-- break -->
-        <div class="widget widget-sidebar widget-white">
-          <div class="widget-header">
-            <h3>Recent Property</h3>
-          </div>
-          <ul>
-            <li><a href="#">Luxury Villa</a></li>
-            <li><a href="#">Land In Central Park</a></li>
-            <li><a href="#">The Urban Life</a></li>
-            <li><a href="#">Luxury Office</a></li>
-          </ul>
-        </div>
-        <!-- break -->
-        <div class="widget widget-sidebar widget-white">
-          <div class="widget-header">
-            <h3>Property Type</h3>
-          </div>
-          <ul class="list-check">
-            <li><a href="#">Garage</a>&nbsp;(18)</li>
-            <li><a href="#">House</a>&nbsp;(31)</li>
-            <li><a href="#">Office</a>&nbsp;(52)</li>
-            <li><a href="#">Apartment</a>&nbsp;(8)</li>
-          </ul>
-        </div>
-        <!-- break -->
-        <div class="widget widget-sidebar widget-white">
-          <div class="widget-header">
-            <h3>Top Host</h3>
-          </div>
-          <ul>
-            <li><a href="#">John Doe</a></li>
-            <li><a href="#">Christoper Drew</a></li>
-            <li><a href="#">Jane Doe</a></li>
-            <li><a href="#">Jeny</a></li>
-          </ul>
-        </div>
-        <!-- break -->
-      </div>
-      <!-- end:sidebar -->
-    </div>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap">
-    </script>
-    <script>
-    function initMap() {
-      var place = {
-        lat: <%= @space_listing.latitude %>,
-        lng: <%= @space_listing.longitude %>};
-
-        var map = new google.maps.Map(document.getElementById('map-canvas2'), {
-          zoom: 14,
-          center: place
-        });
-
-        var panorama = new google.maps.StreetViewPanorama( document.getElementById('pano'), {
-          position: place,
-          pov: { heading: 34, pitch: 10 }
-        });
-        map.setStreetView(panorama);
-      }
-      </script>
-</div>
-</div>

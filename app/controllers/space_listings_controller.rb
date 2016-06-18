@@ -45,6 +45,8 @@ class SpaceListingsController < ApplicationController
 
   def show
     @images = @space_listing.images
+    @review = Review.new
+    @reviews = @space_listing.reviews
   end
 
   def edit

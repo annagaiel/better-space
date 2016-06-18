@@ -1,0 +1,7 @@
+<% @reviews.each do |review| %>
+<p>
+  <%= gravatar_tag review.user.email, size: 20 %>
+  <%= review.content %>
+  by <%= review.user.full_name %>
+</p>
+<% end %>

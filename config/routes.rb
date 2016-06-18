@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   patch '/bookings/:id/toggle_approved_status', to: 'bookings#toggle_approved_status'
   resources :bookings
   resources :images
-
+  resources :reviews
   resources :charges, only: [:create]
 
   namespace :api do
