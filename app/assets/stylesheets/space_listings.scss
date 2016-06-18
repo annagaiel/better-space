@@ -7,8 +7,14 @@ html, body {
   padding: 0;
 }
 
-#map-canvas2, #map {
+#map {
   height: 300px;
+}
+
+#map-canvas2, #pano {
+  float: left;
+  height: 300px; 
+  width: 45%;
 }
 
 .btn-file {

@@ -29,6 +29,7 @@ class SpaceListingsController < ApplicationController
   def create
     @space_listing = SpaceListing.new(space_listing_params)
     @space_listing.user_id = current_user.id
+    @space_listing.address  = @space_listing.address
     if @space_listing.save
       if params[:images]
         params[:images].each { |image|

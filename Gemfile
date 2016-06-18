@@ -20,6 +20,7 @@ gem "figaro"
 gem 'angular-rails-templates'
 gem 'stripe'
 gem 'gravatarify', '~> 3.0.0'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'

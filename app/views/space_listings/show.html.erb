@@ -59,6 +59,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div id="map-canvas2"></div>
+                <div id="pano"></div>
               </div>
             </div>
             <div class="row">
@@ -176,25 +177,15 @@
         lng: <%= @space_listing.longitude %>};
 
         var map = new google.maps.Map(document.getElementById('map-canvas2'), {
-          zoom: 12,
+          zoom: 14,
           center: place
         });
 
-        var contentString = document.getElementById("description").innerHTML;
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString,
-          maxWidth: 200
-        });
-
-        var marker = new google.maps.Marker({
+        var panorama = new google.maps.StreetViewPanorama( document.getElementById('pano'), {
           position: place,
-          map: map,
-          title: document.getElementById("title").innerHTML
+          pov: { heading: 34, pitch: 10 }
         });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
+        map.setStreetView(panorama);
       }
       </script>
 </div>

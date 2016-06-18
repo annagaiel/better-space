@@ -19,4 +19,7 @@ class SpaceListing < ActiveRecord::Base
     return "#{street_number} #{route} #{city}, #{state} #{zip_code} #{country}"
   end
 
+  geocoded_by :address
+  after_validation :geocode 
+
 end
