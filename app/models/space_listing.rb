@@ -3,6 +3,7 @@ class SpaceListing < ActiveRecord::Base
   has_many :images, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :favorites
+  has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, presence: true
@@ -20,6 +21,6 @@ class SpaceListing < ActiveRecord::Base
   end
 
   geocoded_by :address
-  after_validation :geocode 
+  after_validation :geocode
 
 end
