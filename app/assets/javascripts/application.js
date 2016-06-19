@@ -16,6 +16,8 @@
 //= require dirPagination
 //= require angular-rails-templates
 //= require_tree ../templates
+//= require moment
+//= require fullcalendar
 //= require app
 //= require bootstrap
 //= require bootstrap-datepicker.min.js

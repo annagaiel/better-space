@@ -15,6 +15,7 @@
       </div>
       <div class="col-md-9">
         <h1>Your Bookings</h1>
+        <div id='calendar'></div>
           <div ng-repeat="space_listing in spaceListings">
             <h2 ng-if="space_listing.bookings">{{ space_listing.title }}</h2>
             <ul ng-repeat="booking in space_listing.bookings" class="list-group">

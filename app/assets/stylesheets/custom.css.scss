@@ -33,3 +33,23 @@ h2 {
   padding: 30px;
   border: 1px solid #ddd;
 }
+
+.fc-day-grid-event .fc-content{
+  white-space: normal;
+  background-color: #378006;
+  color: #fff;
+  border-radius: 3px;
+  border: 1px solid #378006;
+}
+
+.fc-button-group, .fc button {
+  display: table-row-group;
+}
+
+.nav-pills > li.active > a {
+  background-color: #378006;
+}
+
+.nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #54724B;
+}
