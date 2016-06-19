@@ -9,4 +9,8 @@ class UsersController < ApplicationController
     @favorite.destroy
     redirect_to favorites_path, notice: "Favorite was removed."
   end
+
+  def show
+    @user = User.find_by(id: params[:id])
+  end
 end

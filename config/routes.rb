@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :images
   resources :reviews
   resources :charges, only: [:create]
+  resources :users, only: [:show]
+
 
   namespace :api do
     namespace :v1 do
