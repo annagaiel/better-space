@@ -4,8 +4,8 @@
   <div ng-controller="bookingCtrl" ng-init="your_bookings_setup()">
     <div class="row">
       <div class="col-md-3">
-        <ul>
-          <li>
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active">
             <%= link_to "Your Bookings", your_bookings_path %>
           </li>
           <li>
@@ -15,42 +15,17 @@
       </div>
       <div class="col-md-9">
         <h1>Your Bookings</h1>
-        <% if @space_listing %>
-        <table class="table">
-          <tr>
-            <th><a href="#" ng-click="toggleOrder('title')">Title</a></th>
-            <th><a href="#" ng-click="toggleOrder('move_in')">Move In</a></th>
-            <th><a href="#" ng-click="toggleOrder('move_out')">Move Out</a></th>
-            <th><a href="#" ng-click="toggleOrder('renter')">Renter</a></th>
-            <th><a href="#" ng-click="toggleOrder('price')">Price</a></th>
-            <th><a href="#" ng-click="toggleOrder('status')">Status</a></th>
-            <th>Action</th>
-          </tr>
-          <tr ng-repeat="space_listing in spaceListings | orderBy: orderAttribute:descending">
-            <td>{{ space_listing.title }}</td>
-            <td ng-repeat="booking in space_listing.bookings">
-              {{ booking.move_in }}
-            </td>
-            <td ng-repeat="booking in space_listing.bookings">
-              {{ booking.move_out }}
-            </td>
-            <td ng-repeat="booking in space_listing.bookings">
-              {{ booking.renter }}
-            </td>
-            <td ng-repeat="booking in space_listing.bookings">
-              {{ booking.price }}
-            </td>
-            <td ng-repeat="booking in space_listing.bookings">
-              {{ booking.approved_status }}
-            </td>
-            <td ng-repeat="booking in space_listing.bookings">
-              <a data-method="patch" href="/bookings/{{booking.id}}/toggle_approved_status">Toggle Approve Status</a>
-            </td>
-          </tr>
-        </table>
-        <% else %>
-        <p> No request from your space listings.</p>
-        <% end %>
+          <div ng-repeat="space_listing in spaceListings">
+            <h2 ng-if="space_listing.bookings">{{ space_listing.title }}</h2>
+            <ul ng-repeat="booking in space_listing.bookings" class="list-group">
+              <li class="list-group-item">
+                <p>Move In: {{ booking.move_in }}</p>
+                <p>Move Out: {{ booking.move_in }}</p>
+                <p>Renter: {{ booking.renter }}</p>
+                <p>Price: {{ booking.price }}</p>
+              </li>
+            </ul>
+          </div>
       </div>
     </div>
   </div>
