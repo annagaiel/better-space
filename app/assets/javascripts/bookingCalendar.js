@@ -11,7 +11,7 @@ $(document).ready(function() {
   }
   var todayDate = yyyy + '-' + mm + '-' + dd;
 
-  $.getJSON("http://localhost:3000/api/v1/your_bookings.json", function(result){
+  $.getJSON("/api/v1/your_bookings.json", function(result){
     var eventsArray = [];
     $.each(result, function(i, field){
       var bookingTitle = field.title;
@@ -38,7 +38,7 @@ $(document).ready(function() {
         right: 'month,basicWeek,basicDay'
       },
       defaultDate: todayDate,
-      editable: true,
+      editable: false,
       eventLimit: true, // allow "more" link when too many events
       events: eventsArray,
       eventColor: '#378006'
