@@ -23,6 +23,7 @@ gem 'gravatarify', '~> 3.0.0'
 gem 'geocoder'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'card-rails'
 
 group :development, :test do
   gem 'byebug'

@@ -18,6 +18,7 @@
 //= require_tree ../templates
 //= require moment
 //= require fullcalendar
+//= require card
 //= require app
 //= require bootstrap
 //= require bootstrap-datepicker.min.js
