@@ -2,29 +2,40 @@
   <div class="container">
     <div class="row">
       <div class="inner_container">
-        <%= form_tag charges_path do %>
+        <%= form_tag charges_path, id:"payment-form" do %>
         <article>
           <label class="amount">
             <span>Price: <%= number_to_currency @booking.price %></span>
           </label>
         </article>
         <%= hidden_field_tag 'booking_id', @booking.id %>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-description="<%= @booking.space_listing.title %> (<%= number_to_currency @booking.price %>)"
-        data-amount=<%= (@booking.price * 100).to_i %>
-        data-locale="auto">
-        </script>
-        <% end %>
-        <br>
-        <h2>Booking Request Sent</h2>
-        <p>Your booking is now pending and host needs to approve your request.</p>
-        <div class="row">
-          <div class="col-md-12 col-xs-12">
-            <%= link_to "View your rented spaces request", your_rented_spaces_path, class:"btn btn-success btn-block" %>
-          </div>
+        <div class="form-group">
+          <%= label_tag :card_number, "Credit Card Number" %>
+          <%= text_field_tag :card_number, nil, name: nil, data: {stripe: "number"}, value:"4242 4242 4242 4242", class:"form-control" %>
+        </div>
+        <input type="hidden" name="name", value="<%= current_user.full_name %>">
+        <div class="form-group">
+          <%= label_tag :card_code, "Security Code on Card (CVC)" %>
+          <%= text_field_tag :card_code, nil, name: nil, data: {stripe: "cvc"}, value:"123", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :card_month, "Card Expiration" %>
+          <%= text_field_tag :card_month, nil, name: nil, data: {stripe: "exp"}, value:"12 / 17", class:"form-control" %>
+        </div>
+        <div class="card-errors">
+        </div>
+        <%= submit_tag 'Submit', class: "button round", id: "pay_now", class:"btn btn-success" %>
+
+      <% end %>
+      <br>
+      <h2>Booking Request Sent</h2>
+      <p>Your booking is now pending and host needs to approve your request.</p>
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <%= link_to "View your rented spaces request", your_rented_spaces_path, class:"btn btn-success btn-block" %>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

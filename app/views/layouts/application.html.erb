@@ -14,6 +14,7 @@
   type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
   </script>
   <!--End of Zopim Live Chat Script-->
+  <script type="text/javascript" src="//js.stripe.com/v2/"></script>
 </head>
 <body id="top">
   <%= render "shared/topbar" %>
@@ -33,6 +34,9 @@
   <%= yield %>
 
   <%= render "shared/footer" %>
-
+</body>
+<script type="text/javascript">
+  Stripe.setPublishableKey('<%= ENV['PUBLISHABLE_KEY'] %>');
+</script>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </html>

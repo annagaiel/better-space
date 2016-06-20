@@ -5,12 +5,14 @@ class ChargesController < ApplicationController
   end
 
   def create
+
+    token = params[:stripeToken]
     # Amount in cents
     @amount = (current_booking.price * 100).to_i
 
     customer = Stripe::Customer.create(
-    :email => params[:stripeEmail],
-    :source  => params[:stripeToken]
+    :email       => params[:stripeEmail],
+    :source      => token
     )
 
     charge = Stripe::Charge.create(
