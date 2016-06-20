@@ -7,21 +7,21 @@ function daydiff(first, second) {
   return Math.round((second-first)/(1000*60*60*24));
 }
 
-$("#booking_move_in").datepicker({
+$("#move_in").datepicker({
     format: 'mm/dd/yyyy',
     startDate: '+0d'
 }).on('changeDate', function(e) {
     var tomorrow = new Date($(this).val());
     tomorrow.setDate(tomorrow.getDate() + 1);
-    $('#booking_move_out').datepicker('setStartDate', tomorrow);
-    $('#booking_move_out').datepicker('update');
+    $('#move_out').datepicker('setStartDate', tomorrow);
+    $('#move_out').datepicker('update');
 });
 
-$('#booking_move_in').datepicker('setDate', new Date());
+$('#move_in').datepicker('setDate', new Date());
 
-$("#booking_move_in, #booking_move_out").datepicker().on('changeDate', function (e) {
-  var move_in = $('#booking_move_in').val();
-  var move_out = $('#booking_move_out').val();
+$("#move_in, #move_out").datepicker().on('changeDate', function (e) {
+  var move_in = $('#move_in').val();
+  var move_out = $('#move_out').val();
   var first = parseDate(move_in);
   var second = parseDate(move_out);
   var diff = daydiff(first, second);
@@ -29,6 +29,6 @@ $("#booking_move_in, #booking_move_out").datepicker().on('changeDate', function 
   var total =  parseInt(day) * diff;
   console.log(parseInt(day) * diff);
   if (move_in !== "" && move_out !== ""){
-    $('#booking_price').val(total);
+    $('#price').val(total);
   }
 });

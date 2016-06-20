@@ -14,16 +14,32 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new
     @booking.user_id = current_user.id
-    @booking.price = params[:booking][:price]
-    @booking.space_listing_id = params[:booking][:space_listing_id]
+    @booking.price = params[:price]
+    @booking.space_listing_id = params[:space_listing_id]
     @booking.approved_status = false
-    start_date = params[:booking][:move_in]
-    end_date = params[:booking][:move_out]
+    start_date = params[:move_in]
+    end_date = params[:move_out]
     @booking.move_in = parse_date(start_date)
     @booking.move_out = parse_date(end_date)
 
     if @booking.save
-      render :show
+      begin
+      token = params[:stripeToken]
+      @amount = (@booking.price * 100).to_i
+      customer = Stripe::Customer.create(
+      :email       => params[:stripeEmail],
+      :source      => token
+      )
+      charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => @amount,
+      :description => 'Better Space Content',
+      :currency    => 'usd'
+      )
+      rescue Stripe::CardError => e
+        flash[:message] = e
+      end
+      redirect_to booking_path(@booking), notice:"Thanks, your purchase was successful!"
     else
       redirect_to "/bookings/new/?space_listing_id=#{@booking.space_listing_id}", alert: "Date was already booked!"
     end
@@ -51,7 +67,8 @@ class BookingsController < ApplicationController
 
   private
   def booking_params
-    params.require(:booking).permit(:move_in, :move_out, :total, :price, :space_listing_id)
+    params.require(:booking).permit(:move_in, :move_out, :total, :price, :space_listing_id,
+     :card_number, :card_month, :card_code, :stripeToken, :stripeEmail)
   end
 
   def parse_date(date)

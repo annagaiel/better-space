@@ -22,7 +22,7 @@ $(document).ready(function() {
       var nextformat = arrBooking2[2] + '-' + arrBooking2[0] + '-' + arrBooking2[1];
       eventHash["end"] = nextformat;
       eventsArray.push(eventHash);
-      eventHash["title"] = field.space_listing_title + ' rented from ' + field.host;
+      eventHash["title"] = 'Rented space from ' + field.host;
     });
     // start of calendar;
     $('#rented_calendar').fullCalendar({

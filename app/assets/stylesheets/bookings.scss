@@ -64,9 +64,9 @@
 .open .dropdown-toggle.datepicker table tr td span.active:hover,
 .open .dropdown-toggle.datepicker table tr td span.active.disabled,
 .open .dropdown-toggle.datepicker table tr td span.active.disabled:hover {
-  color: #FFF;
-  background-color: #3c763d;
-  border-color: #3c763d;
+  color: #FFF !important;
+  background-color: #3c763d !important;
+  border-color: #3c763d !important;
 }
 .datepicker table tr td.active,
 .datepicker table tr td.active:hover,

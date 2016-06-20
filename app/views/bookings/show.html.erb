@@ -2,34 +2,6 @@
   <div class="container">
     <div class="row">
       <div class="inner_container">
-        <div class="demo-container">
-          <div class="card-wrapper"></div>
-          <%= form_tag charges_path, id:"payment-form", class:"form-container active" do %>
-          <article>
-            <label class="amount">
-              <span>Price: <%= number_to_currency @booking.price %></span>
-            </label>
-          </article>
-          <%= hidden_field_tag 'booking_id', @booking.id %>
-          <div class="form-group">
-            <%= label_tag :card_number, "Credit Card Number" %>
-            <%= text_field_tag :card_number, nil, name: "number", data: {stripe: "number"}, value:"4242 4242 4242 4242", class:"form-control" %>
-          </div>
-          <input type="hidden" name="name", value="<%= current_user.full_name %>">
-          <div class="form-group">
-            <%= label_tag :card_code, "Security Code on Card (CVC)" %>
-            <%= text_field_tag :card_code, nil, name: "cvc", data: {stripe: "cvc"}, value:"123", class:"form-control" %>
-          </div>
-          <div class="form-group">
-            <%= label_tag :card_month, "Card Expiration" %>
-            <%= text_field_tag :card_month, nil, name: "expiry", data: {stripe: "exp"}, value:"12 / 17", class:"form-control" %>
-          </div>
-          <div class="card-errors">
-          </div>
-          <%= submit_tag 'Pay Now', class: "button round", id: "pay_now", class:"btn btn-success" %>
-          <% end %>
-        </div>
-        <br>
         <h2>Booking Request Sent</h2>
         <p>Your booking is now pending and host needs to approve your request.</p>
         <div class="row">
@@ -37,6 +9,7 @@
             <%= link_to "View your rented spaces request", your_rented_spaces_path, class:"btn btn-success btn-block" %>
           </div>
         </div>
+        <br>
       </div>
     </div>
   </div>
