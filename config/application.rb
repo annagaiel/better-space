@@ -19,6 +19,7 @@ module BetterSpace
   class Application < Rails::Application
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
     config.assets.precompile += ['application-print.css']
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

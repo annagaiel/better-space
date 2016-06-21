@@ -8,21 +8,6 @@ h2 {
   text-transform: uppercase;
 }
 
-// .card {
-//   background: #fff;
-//   border-radius: 2px;
-//   height: 200px;
-// }
-//
-// .card-1 {
-//   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-//   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-// }
-//
-// .card-1:hover {
-//   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-// }
-
 .input-group-addon {
   border: 3px solid #EEE;
   border-radius: 8px;
@@ -58,4 +43,48 @@ h2 {
   width: 100%;
   max-width: 350px;
   margin: 50px auto;
+}
+
+.video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+}
+
+.services{
+  color: white;
+  small{
+    color: white;
+  }
+  h2, p{
+    color: white;
+  }
+}
+
+.landing, .landing2 {
+  color: white;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+}
+
+.landing-search {
+  border: 4px solid #D03B3B;
+  border-radius: 3px;
+}
+
+.landing{
+  h2{
+    color: #6C211B;
+    font-weight: bold;
+    font-size: 3em;
+  }
 }

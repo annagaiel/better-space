@@ -1,16 +1,22 @@
 <%= render "shared/autocomplete" %>
 
-<div class="row">
-  <div class="col-md-6 col-sm-12 col-xs-12 text-center card card-1">
-    <h2>Space Renters</h2>
-    <p>DISCOVER AVAILABLE STORAGE SPACES IN YOUR AREA.</p>
-    <a href="/list_view" class="btn btn-success btn-lg">RENT NOW</a>
-  </div>
-  <div class="col-md-6 col-sm-12 col-xs-12 text-center card card-1">
-    <h2>Space Host</h2>
-    <p>PROMOTE AND LEASE YOUR AVAILABLE SPACES TO RENT.</p>
-    <a href="/space_listings/new" class="btn btn-success btn-lg">LEASE NOW</a>
+<div class="container">
+  <div class="row landing2">
+    <%= video_tag "Urbanisation.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
+    <div class="col-md-6 col-sm-12 col-xs-12 text-center">
+      <h2>Space Renters</h2>
+      <p>DISCOVER AVAILABLE STORAGE SPACES IN YOUR AREA.</p>
+      <a href="/list_view" class="btn btn-success btn-md">RENT NOW</a>
+    </div>
+    <div class="col-md-6 col-sm-12 col-xs-12 text-center ">
+      <h2>Space Host</h2>
+      <p>PROMOTE AND LEASE YOUR AVAILABLE SPACES TO RENT.</p>
+      <a href="/space_listings/new" class="btn btn-success btn-md">LEASE NOW</a>
+    </div>
   </div>
 </div>
 
 <%= render "shared/service" %>
+
+
+<%= render "shared/testimony" %>
