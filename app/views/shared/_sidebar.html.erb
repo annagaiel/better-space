@@ -1,5 +1,11 @@
 <!-- begin:sidebar -->
 <div class="col-md-3 col-md-pull-9 sidebar">
+  <% if @space_listing %>
+  <div class="widget-white favorite">
+    <a href="#"><i class="fa fa-heart"></i> Add to favorite</a><br>
+    <%= link_to "Book This Space", "/bookings/new?space_listing_id=#{@space_listing.id}", class: "btn btn-success" %>
+  </div>
+  <% end %>
   <div class="widget widget-sidebar widget-white">
     <div class="widget-header">
       <h3>Recent Listing</h3>
