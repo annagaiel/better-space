@@ -20,8 +20,8 @@
           <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Listings <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><%= link_to "List View of Listings", list_view_path %></li>
-                <li><%= link_to "Map View of Listings", space_listings_path %></li>
+                <li><%= link_to "List View of Listings", space_listings_path %></li>
+                <li><%= link_to "Map View of Listings", "/space_listings?map_view=true" %></li>
                 <li><%= link_to "Add New Listing", new_space_listing_path %></li>
               </ul>
           </li>

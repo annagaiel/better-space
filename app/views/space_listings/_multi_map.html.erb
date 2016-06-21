@@ -1,0 +1,97 @@
+<div id="map"></div>
+</div>
+  <%= render "shared/sidebar" %>
+<!-- end:article -->
+</div>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initializeMap">
+</script>
+<script>
+function initializeMap() {
+  var locations = [
+    <% @space_listings.each_with_index do |listing, index| %>
+      <% if listing != @space_listings.last %>
+        ['<%= link_to listing.title, space_listing_path(listing) %><br/><%= listing.description %>', <%= listing.latitude %>, <%= listing.longitude %>, <%= index + 1 %>],
+      <% else %>
+        ['<%= link_to listing.title, space_listing_path(listing) %><br/><%= listing.description %>', <%= listing.latitude %>, <%= listing.longitude %>, <%= index + 1 %>]
+      <% end %>
+    <% end %>
+  ];
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: new google.maps.LatLng(<%= @space_listings.first.latitude %>, <%= @space_listings.first.longitude %>),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [
+      {
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            { "color": "#444444" }
+        ]
+      },
+      {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            { "color": "#f2f2f2" }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            { "visibility": "off" }
+          ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            { "saturation": -100 },
+            { "lightness": 45 }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            { "visibility": "simplified" }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            { "visibility": "off" }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            { "color": "#689b61" },
+            { "visibility": "on" }
+        ]
+      }
+    ]
+  });
+
+  var infowindow = new google.maps.InfoWindow();
+
+  var marker, i;
+
+  for (i = 0; i < locations.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locations[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+}
+</script>
