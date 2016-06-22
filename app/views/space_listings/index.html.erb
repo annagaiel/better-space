@@ -8,14 +8,16 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="heading-title heading-title-alt">
-                  <h4>Space Listings meeting the search criteria</h4>
+                  <h4>Space Listings meeting the search criteria <%= @search_term %></h4>
                 </div>
               </div>
               <div class="col-md-4">
                 <% if params[:map_view].nil? %>
                 <form class="form-inline" role="form">
-                  <label for="search">Search:</label>
-                  <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+                  <label for="search">Filter:</label>
+                  <div class="input-group">
+                    <input ng-model="q" id="search" class="form-control" placeholder="Enter Keyword">
+                  </div>
                 </form>
                 <% end %>
               </div>
@@ -23,7 +25,7 @@
             <!-- begin:sorting -->
             <div class="row sort">
               <div class="col-md-4 col-sm-4 col-xs-4">
-                <a href="/space_listings?map_view=true" class="btn btn-default"><i class="fa fa-map"></i></a>
+                <a href="/space_listings?map_view=true" class="btn btn-success"><i class="fa fa-map"></i></a>
                 <a href="/space_listings" class="btn btn-success"><i class="fa fa-list"></i></a>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-8">

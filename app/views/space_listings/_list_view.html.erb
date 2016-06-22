@@ -1,5 +1,3 @@
-<dir-pagination-controls boundary-links="true" pagination-id="listingsPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
-
 <!-- begin:product -->
 <div class="row container-realestate">
   <div dir-paginate="space_listing in spaceListings | filter:q | orderBy:'day_rent':descending | itemsPerPage: pageSize" current-page="currentPage" pagination-id="listingsPagination" class="col-md-12 col-sm-12 col-xs-12">

@@ -3,7 +3,13 @@ class SpaceListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
-    @space_listings = SpaceListing.all
+    @search_term = ''
+    if params[:search_term]
+      @space_listings = SpaceListing.where("zip_code = ?", params[:search_term])
+      @search_term = params[:search_term]
+    else
+      @space_listings = SpaceListing.all
+    end
   end
 
   def new

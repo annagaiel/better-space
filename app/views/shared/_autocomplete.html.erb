@@ -1,11 +1,11 @@
 <div class="col-md-8 col-md-offset-2 landing">
   <h2>Where do you need space? </h2>
-  <div class="form-group">
+  <%= form_tag "/space_listings", method: "get", class:"form-group" do %>
     <div class="input-group">
-      <input id="searchTextField" type="text" class="form-control" placeholder="Enter your Zipcode" autocomplete="off">
+      <%= text_field_tag :search_term, nil, id:"searchTextField", class:"form-control", placeholder:"Enter your Zipcode", required:true %>
       <span class="input-group-btn">
-        <button class="btn-sm btn-danger landing-search">Search</button>
+        <%= submit_tag "Search", class:"btn-sm btn-danger landing-search" %>
       </span>
     </div>
-  </div>
+  <% end %>
 </div>
