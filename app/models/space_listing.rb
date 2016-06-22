@@ -9,7 +9,6 @@ class SpaceListing < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :day_rent, presence: true
-  validates :monthly_rent, presence: true
   validates :space_type, presence: true
   validates :environment_type, presence: true
   validates :size_length, presence: true

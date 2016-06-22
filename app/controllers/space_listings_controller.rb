@@ -23,7 +23,7 @@ class SpaceListingsController < ApplicationController
     if @space_listing.save
       if params[:images]
         params[:images].each { |image|
-          @space_listing.images.create(image_url: image)
+          @space_listing.images.create(image_url: image, space_listing_id: @space_listing.id)
         }
       end
       @images = @space_listing.images
