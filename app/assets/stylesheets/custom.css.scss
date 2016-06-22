@@ -1,4 +1,4 @@
-h2 {
+h1, h2 {
   display: block;
   margin-bottom: 20px;
   font-size: 28px;
@@ -91,4 +91,10 @@ h2 {
 
 .myavatar-icon{
   border-radius: 50%;
+}
+
+.fc-center {
+  h2{
+    font-size: 16px;
+  }
 }

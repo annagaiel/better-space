@@ -49,10 +49,6 @@
                         <td><%= @space_listing.day_rent %></td>
                       </tr>
                       <tr>
-                        <td><strong>Monthly rent</strong></td>
-                        <td><%= @space_listing.monthly_rent %></td>
-                      </tr>
-                      <tr>
                         <td><strong>Space type</strong></td>
                         <td><%= @space_listing.space_type %></td>
                       </tr>
@@ -99,7 +95,7 @@
                         <%= image_tag "team01.jpg", alt:'' %>
                       </div>
                       <div class="team-description">
-                        <h3><%= @space_listing.user.email %></h3>
+                        <h3><%= @space_listing.user.full_name %></h3>
                         <p><i class="fa fa-phone"></i> Office : 021-234-5678<br>
                           <i class="fa fa-mobile"></i> Mobile : +62-3456-78910<br>
                           <i class="fa fa-print"></i> Fax : 021-234-5679</p>
