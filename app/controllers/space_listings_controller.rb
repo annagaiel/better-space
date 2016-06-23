@@ -77,10 +77,10 @@ class SpaceListingsController < ApplicationController
     if favorite_space > 0
       favorite = Favorite.find_by(space_listing_id: @space_listing.id, user_id: current_user.id)
       favorite.destroy
-      redirect_to "/list_view", alert: "#{@space_listing.title} was removed to favorites"
+      redirect_to "/space_listings", alert: "#{@space_listing.title} was removed to favorites"
     else
       Favorite.create(space_listing_id: @space_listing.id, user_id: current_user.id)
-      redirect_to "/list_view", notice: "#{@space_listing.title} was added to favorites"
+      redirect_to "/space_listings", notice: "#{@space_listing.title} was added to favorites"
     end
   end
 
